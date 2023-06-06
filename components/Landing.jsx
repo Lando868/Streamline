@@ -10,8 +10,6 @@ export default function Landing() {
 
     const [isLoggedIn, SetIsLoggedIn] = useState(false);
 
-
-
     return (
 
         isLoggedIn ? <Dashboard /> : <LogIn />

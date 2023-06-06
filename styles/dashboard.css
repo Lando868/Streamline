@@ -1,0 +1,25 @@
+.dashboards {
+  background: var(--dark-1);
+  width: 100vw;
+  height: 100vh;
+  /* display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr; */
+}
+
+.dash-exec {
+  background: red;
+  /* grid-column: 1 / 3; */
+}
+
+.dash-production {
+  background: green;
+}
+
+.dash-energy {
+  background: orange;
+}
+
+.dash-kpi {
+  background: yellow;
+}
