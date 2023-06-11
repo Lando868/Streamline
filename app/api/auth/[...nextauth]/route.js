@@ -1,57 +1,61 @@
-import NextAuth from 'next-auth';
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from "next-auth";
 import { connectToDB } from '@utils/database';
-import User from '@models/user'; 
-
-
-
+import User from '@models/user';
 
 
 
 const handler = NextAuth({
     providers: [
+        Credentials({
+            name: "Nutrien",
+            id: "Nutrien",
+            credentials: {
+                username: { label: "username", type: "text" },
+                password: { label: "password", type: "password" }
+            },
+            async authorize(credentials) {
+                const { username, password } = credentials;
+                try {
+                    await connectToDB();
+                    console.log(`username: ${username}`);
+
+                    const userExists = await User.findOne({
+                        username: username
+                    });
+                    if (username !== userExists.username) {
+                        throw new Error("Invalid username and/or password");
+                        // return null;
+                    } else {
+                        const { _id, username, email, image } = userExists;
+                        const user = {
+                            id: _id,
+                            username: username,
+                            email: email,
+                            image: image
+                            // email: `${userExists.username}@fake.com`,
+                        };
+                        return user;
+                    }
+                } catch (error) {
+                    console.log("Error checking if local user exists: ", error.message);
+                    return null;
+                }
+            },
+        }),
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,            
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         })
     ],
-    callbacks: {
-        async session({ session }){
-            const sessionUser = await User.findOne({
-                email: session.user.email
-            })
-
-            session.user.id = sessionUser._id.toString();
-            return session;
-        },
-        async signIn({ account, profile, user, credentials }){
-            try {
-                await connectToDB();
-
-                // checks if user exist and redirects to dashboard
-                const userExists = await User.findOne({
-                    email: profile.email
-                });
-                // checks if user does not exist and registers new user
-                if(!userExists) {
-                    await User.create({
-                        email: profile.email,
-                        username: profile.name,
-                        // username: profile.name.replace(" ", "").toLowerCase(),
-                        image: profile.picture
-                    })
-
-                    
-                }
-
-                return true;
-            } catch (error) {
-                console.log("Error checking if user exists: ", error.message);
-                return false;
-            }
-        }
-    }
+    session: {
+        strategy: "jwt",
+    },
+    pages: {
+        signIn: "/",
+    },
 });
+
 
 export { handler as GET, handler as POST };

@@ -1,0 +1,132 @@
+import NextAuth from 'next-auth';
+import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import GoogleProvider from 'next-auth/providers/google';
+import { connectToDB } from '@utils/database';
+import User from '@models/user';
+import { redirect } from "next/navigation";
+
+
+
+
+const handler = NextAuth({
+    providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        }),
+        CredentialsProvider({
+            name: "Nutrien",
+            // credentials: {
+            //     username: { label: 'Username', type: "text", placeholder: "Username" },
+            //     password: { label: 'Password', type: "password", placeholder: "Password" }
+            // },
+            async authorize(credentials) {
+                // console.log("User locally authorized");
+                const { username, password } = credentials;
+                try {
+                    await connectToDB();
+                    console.log(`username: ${username}`)
+
+                    // checks if user exist and redirects to dashboard
+                    const userExists = await User.findOne({ username });
+                    // checks if user does not exist and registers new user
+                    if (userExists) {
+                        // const newEmail = `${username}@mail.com`;
+                        // console.log(`New email: ${newEmail}`)
+                        // await User.create({
+                        //     email: newEmail,
+                        //     username,
+                        //     // username: profile.name.replace(" ", "").toLowerCase(),
+                        //     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        // })
+                        const user = { username: userExists.username };
+                        return user;
+                    } else {
+                        return null;
+                    }
+
+                } catch (error) {
+                    console.log("Error checking if local user exists: ", error.message);
+                    return null;
+                }
+
+
+            }
+        })
+    ],
+    callbacks: {
+        async session({ session }) {
+            const sessionUser = await User.findOne({
+                username: session.user.username
+            })
+
+            session.user.id = sessionUser._id.toString();
+            return session;
+        },
+        async signIn({ account, profile, user, credentials }) {
+            try {
+                await connectToDB();
+
+                // checks if user exist and redirects to dashboard
+                const userExists = await User.findOne({
+                    username: credentials.username
+                });
+                // checks if user does not exist and registers new user
+                if (!userExists) {
+                    const newEmail = `${credentials.username}@mail.com`;
+                    const random = Math.floor(Math.random * 100);
+                    console.log(`Random image index: ${random}`);
+
+                    await User.create({
+                        email: newEmail,
+                        username: credentials.username,
+                        image: `https://source.unsplash.com/featured/300x20${random}`
+                    })
+
+                    const user = { email: newEmail, username: credentials.username, image: `https://source.unsplash.com/featured/300x20${random}` }
+                }
+                return user;
+            } catch (error) {
+                console.log("Error checking if user exists: ", error.message);
+                return null;
+            }
+        }
+
+    }
+});
+
+export { handler as GET, handler as POST };
+
+
+
+
+
+
+
+
+
+
+
+
+
+MIDDLEWARE
+
+import { getToken } from "next-auth/jwt";
+
+export async function middleware(req, res) {
+    const pathname = req.url.pathname;
+    const protectedPaths = ["/", "/dashboard"];
+    const isPathProtected = protectedPaths.some((path) => pathname === path);
+
+    if (isPathProtected) {
+        const token = await getToken({ req });
+        if (!token) {
+            // const url = new URL('/login', req.url);
+            const url = new URL('/', req.url);
+            url.searchParams.set("callbackUrl", pathname);
+            return res.redirect(url);
+        }
+    }
+    return res;
+}

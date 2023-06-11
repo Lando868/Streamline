@@ -1,0 +1,193 @@
+'use client';
+
+import { useEffect, useState } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import Link from "next/link";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+
+import { FontAwesomeIcon } from "fontAwesome";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+
+import google_logo from "../public/assets/images/google_logo.png";
+
+
+
+const LogIn = () => {
+
+    const btnLogo = '30';
+
+    const { data: session } = useSession();
+    const [providers, setProviders] = useState(null);
+    const [usernameN, setUsernameN] = useState("");
+    const [passwordN, setPasswordN] = useState("");
+
+    useEffect(() => {
+        (async () => {
+            const res = await getProviders();
+            setProviders(res);
+        })();
+    }, []);
+
+
+    const localSignIn = async (e) => {
+        e.preventDefault();
+        console.log(`localSignIn ${usernameN} + ${passwordN}`);
+        {/*const result = await signIn("Nutrien", { usernameN, passwordN, redirect: false, callbackUrl: "/dashboard" });*/ }
+        const credentials = { usernameN, passwordN };
+        await signIn("Nutrien", { credentials, redirect: false, callbackUrl: "/dashboard" });
+
+    }
+
+
+
+
+    return (
+        <section className="landing" >
+            <FontAwesomeIcon
+                icon={faGear}
+                className="gear"
+            />
+            <h1 className="title">STREAMLINE</h1>
+            <p className="copy">Harnessing the Power of Data</p>
+            <hr className="divider" />
+            <div className="welcome-login-group">
+                <form onSubmit={localSignIn} className="form-login">
+                    <div className="username-div">
+                        <input type="text" name="username" className="username" value={usernameN} onChange={(e) => setUsernameN(e.target.value)} required autoComplete="off" />
+                        <span className="user-span">username</span>
+                    </div>
+                    <div className="password-div">
+                        <input type="password" name="password" className="password" value={passwordN} onChange={(e) => setPasswordN(e.target.value)} required />
+                        <span className="password-span">password</span>
+                    </div>
+                    {/*<Link href="/dashboard" className="login-link"><button type="button" className="btn login-btn">LOG IN</button></Link>*/}
+                    <button type="submit" className="btn login-btn">LOG IN</button>
+                    {console.log(`Providers: ${providers}`)}
+                    <>
+                        {providers &&
+                            Object.values(providers).map((provider) => (
+                                <button
+                                    type='button'
+                                    key={provider.name}
+                                    onClick={() => {
+                                        signIn(provider.id, { callbackUrl: '/dashboard' });
+                                        {/*redirect("/dashboard");*/ }
+                                    }}
+                                    className='google-btn btn'
+                                >
+                                    <Image
+                                        src={google_logo}
+                                        width={btnLogo}
+                                        height={btnLogo}
+                                        alt='google-logo'
+                                        className='google-logo'
+                                    />
+                                    Sign in with {provider.name}
+                                </button>
+                            ))}
+                    </>
+                </form>
+            </div>
+
+        </section>
+    )
+}
+
+export default LogIn; 'use client';
+
+import { useEffect, useState } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import Link from "next/link";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+
+import { FontAwesomeIcon } from "fontAwesome";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+
+import google_logo from "../public/assets/images/google_logo.png";
+
+
+
+const LogIn = () => {
+
+    const btnLogo = '30';
+
+    const { data: session } = useSession();
+    const [providers, setProviders] = useState(null);
+    const [usernameN, setUsernameN] = useState("");
+    const [passwordN, setPasswordN] = useState("");
+
+    useEffect(() => {
+        (async () => {
+            const res = await getProviders();
+            setProviders(res);
+        })();
+    }, []);
+
+
+    const localSignIn = async (e) => {
+        e.preventDefault();
+        console.log(`localSignIn ${usernameN} + ${passwordN}`);
+        {/*const result = await signIn("Nutrien", { usernameN, passwordN, redirect: false, callbackUrl: "/dashboard" });*/ }
+        const credentials = { usernameN, passwordN };
+        await signIn("Nutrien", { credentials, redirect: false, callbackUrl: "/dashboard" });
+
+    }
+
+
+
+
+    return (
+        <section className="landing" >
+            <FontAwesomeIcon
+                icon={faGear}
+                className="gear"
+            />
+            <h1 className="title">STREAMLINE</h1>
+            <p className="copy">Harnessing the Power of Data</p>
+            <hr className="divider" />
+            <div className="welcome-login-group">
+                <form onSubmit={localSignIn} className="form-login">
+                    <div className="username-div">
+                        <input type="text" name="username" className="username" value={usernameN} onChange={(e) => setUsernameN(e.target.value)} required autoComplete="off" />
+                        <span className="user-span">username</span>
+                    </div>
+                    <div className="password-div">
+                        <input type="password" name="password" className="password" value={passwordN} onChange={(e) => setPasswordN(e.target.value)} required />
+                        <span className="password-span">password</span>
+                    </div>
+                    {/*<Link href="/dashboard" className="login-link"><button type="button" className="btn login-btn">LOG IN</button></Link>*/}
+                    <button type="submit" className="btn login-btn">LOG IN</button>
+                    {console.log(`Providers: ${providers}`)}
+                    <>
+                        {providers &&
+                            Object.values(providers).map((provider) => (
+                                <button
+                                    type='button'
+                                    key={provider.name}
+                                    onClick={() => {
+                                        signIn(provider.id, { callbackUrl: '/dashboard' });
+                                        {/*redirect("/dashboard");*/ }
+                                    }}
+                                    className='google-btn btn'
+                                >
+                                    <Image
+                                        src={google_logo}
+                                        width={btnLogo}
+                                        height={btnLogo}
+                                        alt='google-logo'
+                                        className='google-logo'
+                                    />
+                                    Sign in with {provider.name}
+                                </button>
+                            ))}
+                    </>
+                </form>
+            </div>
+
+        </section>
+    )
+}
+
+export default LogIn;
