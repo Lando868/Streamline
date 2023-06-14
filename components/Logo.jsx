@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import '@styles/global.css';
 
 
 const Logo = (props) => {

@@ -1,8 +1,9 @@
-import Credentials from "next-auth/providers/credentials";
-import GoogleProvider from 'next-auth/providers/google';
 import NextAuth from "next-auth";
+import GoogleProvider from 'next-auth/providers/google';
+import Credentials from "next-auth/providers/credentials";
 import { connectToDB } from '@utils/database';
 import User from '@models/user';
+
 
 
 
@@ -15,8 +16,10 @@ const handler = NextAuth({
                 username: { label: "username", type: "text" },
                 password: { label: "password", type: "password" }
             },
-            async authorize(credentials) {
+            async authorize(credentials, req) {
                 const { username, password } = credentials;
+
+
                 try {
                     await connectToDB();
                     console.log(`username: ${username}`);
@@ -24,6 +27,8 @@ const handler = NextAuth({
                     const userExists = await User.findOne({
                         username: username
                     });
+
+
                     if (username !== userExists.username) {
                         throw new Error("Invalid username and/or password");
                         // return null;
@@ -36,6 +41,7 @@ const handler = NextAuth({
                             image: image
                             // email: `${userExists.username}@fake.com`,
                         };
+                        console.log("else User: ", user)
                         return user;
                     }
                 } catch (error) {
@@ -49,12 +55,35 @@ const handler = NextAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         })
     ],
-    session: {
-        strategy: "jwt",
+    // session: {
+    //     strategy: 'jwt',
+    // },
+    callbacks: {
+        async jwt({ token, user, account, profile }) {
+            if (user) {
+                console.log("JWT User: ", user);
+                console.log("user.id: ", user.id);
+
+                if (account.provider === 'google') {
+                    token.name = user.name;
+                    token.accessToken = account.access_token;
+                    token.id = account.providerAccountId;
+                } else {
+                    token.name = user.username;
+                }
+
+                console.log("token: ", token);
+                console.log("user: ", user);
+                console.log("account: ", account);
+                console.log("profile: ", profile);
+            }
+            return token;
+        }
     },
     pages: {
         signIn: "/",
-    },
+    }
+
 });
 
 

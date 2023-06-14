@@ -15,10 +15,6 @@ import ntr_logo from "../public/assets/images/ntr_logo.png";
 
 const LogIn = () => {
 
-    const btnLogo = '30';
-
-    const { data: session } = useSession();
-    {/*const callbackUrl = "/";*/ }
     const router = useRouter();
     const callbackUrl = (router.query?.callbackUrl || "/").toString();
 
@@ -32,25 +28,31 @@ const LogIn = () => {
         })();
     }, []);
 
-    const handleNTRlogin = async (e) => {
+
+
+
+    const handleNTRLogin = async (e) => {
         e.preventDefault();
         const username = e.target.username.value;
         const password = e.target.password.value;
         const result = await signIn("Nutrien", {
-            username,
+            username: username,
             password,
             redirect: false,
             callbackUrl: callbackUrl,
         });
         if (result?.error) {
-            {/*setError(`Invalid username and/or password_${result.error}`);*/ }
+            console.log("Sign in: ", error)
             setError(`Invalid username and/or password`);
         } else {
+            console.log("signIn result: ", result);
             router.push("/dashboard");
+
         }
     }
 
 
+    const btnLogo = '30';
 
 
     return (
@@ -63,7 +65,7 @@ const LogIn = () => {
             <p className="copy">Harnessing the Power of Data</p>
             <hr className="divider" />
             <div className="welcome-login-group">
-                <form className="form-login" onSubmit={handleNTRlogin}>
+                <form className="form-login" onSubmit={handleNTRLogin}>
                     {!!error && <p className="login-error">{error}</p>}
                     <div className="username-div">
                         <input type="text" name="username" className="username" required autoComplete="off" />
@@ -91,18 +93,24 @@ const LogIn = () => {
                     <button
                         type='button'
                         key='Google'
-                        onClick={() => { signIn("Google", { callbackUrl: '/dashboard' }) }}
+                        onClick={() => {
+                            signIn("google", {
+                                callbackUrl: "/dashboard",
+                            });
+                        }}
+
                         className='google-btn btn'
                     >
                         <Image
                             src={google_logo}
                             width={btnLogo}
                             height={btnLogo}
-                            alt='google-logo'
+                            alt='nutrien-logo'
                             className='google-logo'
                         />
                         Sign in with Google
                     </button>
+
                 </form>
             </div>
 
@@ -110,4 +118,4 @@ const LogIn = () => {
     )
 }
 
-export default LogIn;
+export { LogIn as default };

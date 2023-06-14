@@ -1,11 +1,11 @@
 import { getToken } from "next-auth/jwt";
-// import { NextRequest, NextResponse } from "next/server";
 import { NextResponse } from "next/server";
 
 
 
 export async function middleware(req) {
-    // const req = NextRequest.next();
+
+
     const pathname = req.nextUrl.pathname;
     const protectedPaths = ["/dashboard"];
     const isPathProtected = protectedPaths?.some((path) => pathname == path);
@@ -24,4 +24,23 @@ export async function middleware(req) {
         }
     }
     return res;
+
 }
+
+
+
+
+
+     // try {
+        //     const decodedToken = jwt.verify(token, YOUR_JWT_SECRET);
+        //     const { id, username, email, image } = decodedToken;
+
+        //     console.log('User ID:', id);
+        //     console.log('Username:', username);
+        //     console.log('Email:', email);
+        //     console.log('Image:', image);
+
+        // } catch (error) {
+        //     console.log(error)
+        //     return res.status(401).json({ message: 'Unauthorized' });
+        // }

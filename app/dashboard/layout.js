@@ -1,6 +1,6 @@
 'use client';
 
-import '@styles/global.css';
+// import '@styles/global.css';
 import '@styles/dashboard.css';
 import Navigation from '@components/Navigation';
 import { useState } from 'react';
