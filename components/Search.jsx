@@ -2,9 +2,18 @@
 
 import { useState } from 'react';
 
-const Search = () => {
+const Search = (props) => {
     return (
-        <div>Search</div>
+        <div>
+            <form>
+                <input
+                    type="text"
+                    placeholder="Search for an asset, jargon accepted"
+                    className="searchbar"
+                />
+            </form>
+
+        </div>
     )
 }
 

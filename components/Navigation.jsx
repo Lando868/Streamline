@@ -2,7 +2,8 @@
 
 import NavLink from './NavLink';
 import Logo from './Logo';
-import { faFlaskVial, faDatabase, faCircleInfo, faChartArea, faGears, faDashboard, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faFlaskVial, faDatabase, faCircleInfo, faChartArea, faGears, faDashboard, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { usePathname, useRouter } from "next/navigation";
 
 
 export default function Navigation(props) {
@@ -14,12 +15,13 @@ export default function Navigation(props) {
 
     let navData = { name: 'ASSET LOG', icon: faDatabase };
     let navProd = { name: 'PRODUCTION', icon: faDashboard };
+    let navLTT = { name: 'LTT TRACKER', icon: faLock };
     let navReports = { name: 'REPORTS', icon: faChartArea };
     let navChemInv = { name: 'INVENTORY', icon: faGears };
     let navSample = { name: 'SAMPLE DATA', icon: faFlaskVial };
     let navStatus = { name: 'SITE STATUS', icon: faCircleInfo };
 
-    const linkArr = [navData, navProd, navReports, navChemInv, navSample, navStatus]
+    const linkArr = [navData, navProd, navLTT, navReports, navChemInv, navSample, navStatus]
 
     return (
         <nav className="navbar" style={{ width: props.collapse ? props.clspWidth : props.nrmWidth }}>

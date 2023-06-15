@@ -16,33 +16,10 @@ export const POST = async (req) => {
         const userID = userObject._id;
 
 
-        console.log("asset", asset);
-        console.log("createdBy", createdBy);
-        console.log("assetObject", assetObject);
-        console.log("userObject", userObject);
-        console.log("assetID", assetID);
-        console.log("userID", userID);
-
-        const shortDate = {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric'
-        }
-
-        const created = new Date().toLocaleString("en-US", shortDate);
-
-
-        console.log("created", created);
-
-
-
-
         const newComment = new Comment({
             asset: assetID,
             content: content,
-            createdOn: created,
+            createdOn: new Date(),
             createdBy: userID,
             jobType: jobType,
             tag: tag,

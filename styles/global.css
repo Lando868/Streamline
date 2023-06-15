@@ -36,9 +36,11 @@
   --dark-0: #333;
   --dark-1: #2b2f2f;
   --dark-2: #191d1d;
+  --dark-a: #2b2f2fee;
   --grey: #777;
   --light-grey: #aaaaaa77;
   --title-bg: linear-gradient(160deg, #fff, var(--green-1));
+  --title-bg-2: linear-gradient(180deg, var(--dark-2), var(--dark-1));
   --site-bg: linear-gradient(10deg, var(--off-white), #777);
   --asset-bg: linear-gradient(10deg, var(--green-3), var(--green-4));
   --tag-bg: linear-gradient(175deg, var(--off-white), var(--green-3));
@@ -174,13 +176,15 @@ body {
 
 .nav-backing {
   /* width: 5vw; */
-  height: 50px;
+  height: 60px;
   background: var(--dark-1);
   filter: var(--shadow-lg);
   position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
+  display: flex;
+  align-items: center;
   /* transition: width cubic-bezier(0.445, 0.05, 0.55, -1.1) 300ms; */
   transition: all cubic-bezier(0.445, 0.05, 0.55, -1.2) 450ms;
 
@@ -192,11 +196,11 @@ body {
   /* font-size: 2.0rem; */
   /* color: var(--green-2); */
   color: var(--grey);
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
   /* filter: drop-shadow(2px 2px 0px #b7ff0088); */
-  position: fixed;
+  position: absolute;
   left: 13.5vw;
-  top: 1.5rem;
+  top: 2rem;
   /* z-index: 2; */
   transition: all cubic-bezier(0.445, 0.05, 0.55, -1.2) 850ms;
 }
@@ -225,7 +229,7 @@ body {
 
 .nav-title {
   /* color: var(--off-white); */
-  font-size: 2.5rem;
+  font-size: 2rem;
   /* background: var(--dark-1); */
   display: flex;
   justify-content: center;
@@ -242,7 +246,7 @@ body {
   position: absolute;
   right: 0rem;
   /* top: 0rem; */
-  height: 50px;
+  height: 60px;
   /* justify-self: center; */
   /* border-radius: 500px 0% 0px 5000px; */
   /* animation: fade-in-2 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards
@@ -281,9 +285,9 @@ body {
 
 .nav-links {
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
   position: fixed;
-  top: 50px;
+  top: 60px;
   left: 0;
   z-index: 50;
 }
@@ -573,15 +577,15 @@ body {
   display: flex;
   justify-content: flex-start;
   position: relative;
-  margin: 2rem 0 1rem 2rem;
-
+  margin: 0rem 0 1rem 2rem;
+  transition: all cubic-bezier(0.47, 0, 0.745, 0.715) 500ms;
 }
 
 .input1 {
   /* display: flex; */
   font-weight: 400;
   font-size: 1.7rem;
-  margin: 3rem 0 1rem 0rem;
+  /* margin: 3rem 0 1rem 0rem; */
   padding: 0rem 2rem;
   width: 80%;
   height: 4rem;
@@ -611,7 +615,7 @@ body {
   /* color: #aaaaaa33; */
   color: var(--grey);
   position: absolute;
-  top: 4.5rem;
+  top: 1.5rem;
   left: 1.5rem;
   user-select: none;
   font-size: 1.4rem;
@@ -642,10 +646,11 @@ body {
   display: flex;
   justify-content: center;
   position: relative;
+  transition: all cubic-bezier(0.47, 0, 0.745, 0.715) 500ms;
 }
 
 .textArea1 {
-  display: block;
+  /* display: block; */
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 1.9rem;
@@ -683,7 +688,7 @@ body {
   /* color: #aaaaaa33; */
   color: var(--grey);
   position: absolute;
-  top: 45%;
+  top: 25%;
   left: 3.0rem;
   user-select: none;
   font-size: 1.4rem;
@@ -709,6 +714,21 @@ body {
   letter-spacing: 1.1px;
   transition: all ease-in-out 400ms;
 }
+
+
+
+.textArea1::-webkit-scrollbar {
+  width: 5px;
+}
+
+.textArea1::-webkit-scrollbar-track {
+  background-color: var(--green-5);
+}
+
+.textArea1::-webkit-scrollbar-thumb {
+  background-color: var(--green-2);
+}
+
 
 
 
@@ -932,7 +952,8 @@ body {
   width: var(--logo-sq);
   height: var(--logo-sq);
   position: absolute;
-  top: 1rem;
+  opacity: 0.8;
+  top: 1.5rem;
   left: 1rem;
   z-index: 10;
   animation: rotating 50s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite forwards;

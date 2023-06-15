@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const Feed = (props) => {
+const UpdateFeed = (props) => {
 
 
     const query = props.query;
@@ -65,4 +65,4 @@ const Feed = (props) => {
     )
 }
 
-export default Feed
+export default UpdateFeed;

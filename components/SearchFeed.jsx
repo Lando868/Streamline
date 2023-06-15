@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const Feed = (props) => {
+const SearchFeed = (props) => {
 
 
     const query = props.query;
@@ -33,11 +33,29 @@ const Feed = (props) => {
     }, [props.query]);
 
 
+    const filterComments = (query) => {
+        const regex = new RegExp(query, "i");
+        return allComments.filter(
+            (comment) =>
+                regex.test(comment.content) ||
+                regex.test(comment.asset.title) ||
+                regex.test(comment.createdBy.username) ||
+                regex.test(comment.asset.desc) ||
+                regex.test(comment.asset.jargon) ||
+                regex.test(comment.asset.site) ||
+                regex.test(comment.tag) ||
+                regex.test(comment.createdOn) ||
+                regex.test(comment.jobType)
+        )
+    }
+
+
+    const queriedComments = filterComments(query);
+
 
     return (
         <div className="comment-feed">
-            {allComments
-                .filter(comment => !props.query || comment.asset.title == props.query)
+            {queriedComments
                 .slice()
                 .reverse()
                 .map((comment) => (
@@ -65,4 +83,4 @@ const Feed = (props) => {
     )
 }
 
-export default Feed
+export default SearchFeed;

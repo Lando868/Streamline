@@ -1,6 +1,5 @@
 'use client';
 
-
 import { useSession } from "next-auth/react";
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { signIn, signOut } from "next-auth/react";
@@ -8,51 +7,31 @@ import Image from "next/image";
 
 import { date } from '@utils/date';
 import { shift } from '@utils/shift';
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "fontAwesome";
-import { faRightFromBracket, faCaretDown, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faCaretDown, faCalendarDays, faMagnifyingGlass, faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import Clock from "./Clock";
 import Input1 from "./Input1";
 import TextArea1 from "./TextArea1";
 import Feed from "./Feed";
-
+import RecentFeed from "./RecentFeed";
+import UpdateFeed from "./UpdateFeed";
+import SearchFeed from "./SearchFeed";
 
 
 
 const Dashboard = () => {
     const router = useRouter();
+
     const { data: session } = useSession();
     {/*console.log("Session values: ", session ? session : "whyyyy!!!!");*/ }
 
     const userLoggedIn = session?.user.name;
     const userImg = session?.user.image;
+    const picSize = '25';
 
     const shiftCheck = shift();
 
-    {/*console.log("refDate: ", shiftCheck.refDate);
-    console.log("now: ", shiftCheck.now);
-    console.log("currentHour: ", shiftCheck.currentHour);
-    console.log("shiftDate: ", shiftCheck.shiftDate);
-    console.log("RD7A: ", shiftCheck.RD7A);
-    console.log("RD7P: ", shiftCheck.RD7P);
-    console.log("source: ", shiftCheck.source);
-    console.log("shiftCode: ", shiftCheck.shiftCode);
-    console.log("daysDiff: ", shiftCheck.daysDiff);
-    console.log("shift: ", shiftCheck.shift);
-    console.log("rotation: ", shiftCheck.rotation);
-    console.log("period: ", shiftCheck.period);
-    console.log("prevDay: ", shiftCheck.prevDay);*/}
-
-
-    {/*
-    
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum laboriosam adipisci maiores, cupiditate ipsam fuga nesciunt quia unde sint sed repellendus, eius, ipsum magni vel! Nesciunt reprehenderit at, eius commodi itaque sapiente repellendus culpa, numquam laboriosam nostrum, officia modi molestiae.
-
-    #validated, #finally, #lorem, #test
-
-*/}
-
-    const picSize = '25';
     const profileDropdown = {
         opacity: "1",
         transform: "scaleY(1)",
@@ -64,12 +43,12 @@ const Dashboard = () => {
         transform: "scaleY(0)",
         transition: "all cubic-bezier(0.175, 0.885, 0.32, 1.275) 500ms",
         pointerEvents: "none",
-
     }
 
     const dropdownRef = useRef(null);
     const menuRef = useRef(null);
     const uploadRef = useRef([])
+    const searchRef = useRef("");
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [site, setSite] = useState("");
@@ -80,6 +59,11 @@ const Dashboard = () => {
     const [assetDesc, setAssetDesc] = useState("");
     const [assetJargon, setAssetJargon] = useState([]);
     const [commentTag, setCommentTag] = useState([]);
+    const [assetSearch, setAssetSearch] = useState("");
+    const [searchResult, setSearchResult] = useState("");
+    const [queries, setQueries] = useState("");
+    const [querySearch, setQuerySearch] = useState("");
+
 
 
 
@@ -102,10 +86,6 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        console.log("Site: ", site);
-    }, [site]);
-
-    useEffect(() => {
         document.addEventListener('click', handleClickOutside);
         return () => {
             document.removeEventListener('click', handleClickOutside);
@@ -114,6 +94,16 @@ const Dashboard = () => {
 
 
     const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+
+
+
+
+    useEffect(() => {
+        console.log("Site: ", site);
+    }, [site]);
+
+
+
 
 
 
@@ -214,6 +204,142 @@ const Dashboard = () => {
 
 
 
+
+
+
+
+
+
+    const delay = 50;
+    let timer;
+    const handleSearchChange = () => {
+
+        clearTimeout(timer)
+        console.log("before timer - assetSearch: ", assetSearch);
+
+
+        timer = setTimeout(async () => {
+
+            try {
+                const res = await fetch(`api/asset?title=${assetSearch}`);
+                const data = await res.json();
+
+                setSearchResult(data);
+                console.log("searchResult: ", searchResult);
+
+            } catch (error) {
+                console.log("Search error: ", error)
+            }
+
+
+
+        }, delay);
+    }
+    useEffect(() => {
+
+        console.log("after timer - assetSearch: ", assetSearch);
+        handleSearchChange();
+        {/* setAssetID(assetSearch)*/ }
+
+        return () => {
+            clearTimeout(timer);
+        };
+
+    }, [assetSearch]);
+
+
+
+
+    const handleInput = (e) => {
+        e.preventDefault();
+        setAssetSearch(e.target.value)
+        console.log("handleInput - assetSearch: ", assetSearch);
+
+        ;
+    }
+
+    const handleSearchInput = (e) => {
+        console.log("handleSearchInput - assetSearch: ", assetSearch);
+        ;
+    }
+
+
+
+    const handleSelect = (e) => {
+        console.log(e.target);
+        const resultData = e.target.dataset.result;
+        console.log("resultTitle: ", resultData);
+        {/*console.log("resultTitle: ", result.title);*/ }
+        {/* setAssetID(assetSearch);*/ }
+    }
+
+
+
+
+    const handleTagClick = (e) => {
+        console.log(e.target);
+        setQueries("lorem");
+    }
+
+
+
+
+    const handleQueryChange = () => {
+
+        clearTimeout(timer)
+        console.log("before timer - querySearch: ", querySearch);
+
+
+        timer = setTimeout(async () => {
+
+            try {
+                setQueries(querySearch);
+
+            } catch (error) {
+                console.log("Search error: ", error)
+            }
+
+
+
+        }, delay);
+    }
+    useEffect(() => {
+
+        console.log("after timer - querySearch: ", querySearch);
+        handleQueryChange();
+        {/* setAssetID(assetSearch)*/ }
+
+        return () => {
+            clearTimeout(timer);
+        };
+
+    }, [querySearch]);
+
+
+
+
+    const handleQuery = (e) => {
+        e.preventDefault();
+        setQuerySearch(e.target.value)
+        console.log("handleQuery - querySearch: ", querySearch);
+
+        ;
+    }
+
+    const handleQueryInput = (e) => {
+        console.log("handleQueryInput - querySearch: ", querySearch);
+        setQueries(querySearch);
+
+    }
+
+
+
+
+
+
+
+
+
     return (
         <div>
             <div className="dash-overall">
@@ -228,6 +354,8 @@ const Dashboard = () => {
                         <option className="dropdown">03 Plant</option>
                         <option className="dropdown">04 Plant</option>
                         <option className="dropdown">Urea Plant</option>
+                        <option className="dropdown">Demin Plant</option>
+                        <option className="dropdown">UFC-85</option>
                         <option className="dropdown">Product Handling</option>
                     </select>
                     <div className="shift-block">
@@ -274,10 +402,16 @@ const Dashboard = () => {
                             className="profile-menu"
                             style={isDropdownOpen ? { ...profileDropdown } : { ...profileHidden }}
                         >
-                            <button
-                                className="log-out-btn"
+                            <div
+                                className="log-out"
                                 onClick={signOut}
-                            ><FontAwesomeIcon icon={faRightFromBracket} /> Log Out</button>
+                            >
+                                <FontAwesomeIcon
+                                    className="log-out-icon"
+                                    icon={faRightFromBracket}
+                                />
+                                <span className="log-out-text">Log Out</span>
+                            </div>
                         </div>
                     </div>
 
@@ -285,34 +419,83 @@ const Dashboard = () => {
                 </div>
 
                 <div className="dash-entry">
-
-                    <select
-                        name="asset"
-                        className="asset-select"
-                        value={assetID}
-                        onChange={(e) => { e.preventDefault(); setAssetID(e.target.value) }}
+                    <form
+                        className="search-form"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            console.log(e)
+                        }}>
+                        <input
+                            ref={searchRef}
+                            type="text"
+                            placeholder="Search for an asset  (jargon accepted)"
+                            className="search-bar"
+                            value={assetSearch}
+                            onInput={handleInput}
+                            onKeyUp={handleSearchInput}
+                        />
+                        <FontAwesomeIcon
+                            className="search-icon"
+                            icon={faMagnifyingGlass}
+                        />
+                    </form>
+                    <div
+                        className="search-results"
                     >
-                        <option className="dropdown" value="default" >Select an asset</option>
-                        <option className="dropdown">01MP02C</option>
-                        <option className="dropdown">01MP03B</option>
-                        <option className="dropdown">02MK01A</option>
-                        <option className="dropdown">02MME5A</option>
-                        <option className="dropdown">07MP02B</option>
-                    </select>
+                        {searchResult && searchResult.map((result, index) => (
+                            <p
+                                key={index}
+                                className="result"
+                                onClick={() => {
+                                    setAssetID(result.title);
+                                    setAssetDesc(result.desc);
+                                    setSearchResult("");
+                                }}
+                            >
+                                {console.log("Mapped result: ", result)}
+                                {console.log("Mapped title: ", result.title)}
+                                {result.title}:
+                                <span
+                                    className="result-desc"
+
+                                >
+                                    {result.desc.substring(0, 70)}
+                                </span>
+                            </p>
+                        ))}
+                    </div>
+
+                    <div className="selected">
+                        <p
+                            name="asset"
+                            className="asset-ID"
+                        >
+                            {assetID}
+                        </p>
+                        <span
+                            className="asset-desc"
+                            style={assetID == "" ? {} : { borderLeft: "1px dashed var(--light-grey)" }}> {assetDesc.substring(0, 70)}</span>
+                    </div>
+
 
                     <TextArea1
                         name="assetComment"
-                        className="textArea1"
+                        className="comment-entry-text-area"
                         value={assetComment}
-                        onChange={(e) => { e.preventDefault(); setAssetComment(e.target.value) }}
+                        onChange={(e) => { e.preventDefault(); setAssetComment(e.target.value); console.log("comment: ", assetComment) }}
                         placeholder="Comment"
+                        fade={assetID}
+
 
                     />
                     <Input1
                         type="text"
+                        className="comment-entry-tag-input"
                         value={commentTag}
                         onChange={(e) => { e.preventDefault(); setCommentTag(e.target.value) }}
                         placeholder="Tag"
+                        fade={assetID}
+
                     />
 
 
@@ -320,28 +503,78 @@ const Dashboard = () => {
                     <button
                         className="btn-add"
                         onClick={submitComment}
+                        style={assetID == "" ? { opacity: "0" } : { opacity: "1" }}
                     >
                         +
                     </button>
 
-                    {/*<input type="file" ref={uploadRef} id="upload-field" accept="images/*" multiple name="uploaded" />*/}
+                </div>
 
-
+                <div className="dash-updates">
+                    <div
+                        className="latest-updates"
+                        style={assetID ? {} : { fontSize: "1.5rem" }}>
+                        {assetID ?
+                            <h1>
+                                Recent logs for <span className="recent-asset">{assetID}</span>
+                            </h1>
+                            :
+                            <h1>The most recent logs for your selected asset will show up below...</h1>
+                        }
+                    </div>
+                    <RecentFeed
+                        className="comment-feed"
+                        commentSubmit={assetComment}
+                        handleTagClick={handleTagClick}
+                        query={assetID}
+                    />
+                </div>
+                <div
+                    className="all-updates"
+                    style={assetID ? {} : { fontSize: "1.5rem" }}>
+                    {site ?
+                        <h1>
+                            Recent logs for <span className="recent-site">{site}</span>
+                        </h1>
+                        :
+                        <h1>The most recent logs for your site will show up below...</h1>
+                    }
                 </div>
                 <div className="dash-feed">
-                    {/*   <Input1
-                        type="text"
-                        value={assetDesc}
-                        onChange={(e) => { e.preventDefault(); setAssetDesc(e.target.value) }}
-                        placeholder="Description"
-                    />*/}
-                    <Suspense fallback={<div className="fallback">Synchronizing...</div>}>
+                    <UpdateFeed
+                        className="comment-feed"
+                        commentSubmit={assetComment}
+                        handleTagClick={handleTagClick}
 
-                        <Feed
-                            className="comment-feed"
-                            commentSubmit={assetComment}
+                    />
+                </div>
+                <div className="dash-query">
+                    <form
+                        className="query-form"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            console.log(e)
+                        }}>
+                        <input
+                            type="text"
+                            placeholder="Search for a word, phrase, tag, jargon"
+                            className="query-bar"
+                            value={querySearch}
+                            onInput={handleQuery}
+                            onKeyUp={handleQueryInput}
                         />
-                    </Suspense>
+                        <FontAwesomeIcon
+                            className="query-icon"
+                            icon={faCircleQuestion}
+                        />
+                    </form>
+                    <SearchFeed
+                        className="query-feed"
+                        commentSubmit={assetComment}
+                        handleTagClick={handleTagClick}
+                        query={queries}
+
+                    />
                 </div>
 
 
@@ -381,6 +614,18 @@ export default Dashboard;
                         />
                         <button type="submit" className='btn comment-btn'>Submit comment</button>
                     </form>*/}
+
+
+{/*   <Input1
+                        type="text"
+                        value={assetDesc}
+                        onChange={(e) => { e.preventDefault(); setAssetDesc(e.target.value) }}
+                        placeholder="Description"
+                    />*/}
+
+
+{/*<input type="file" ref={uploadRef} id="upload-field" accept="images/*" multiple name="uploaded" />*/ }
+
 
 
 

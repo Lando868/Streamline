@@ -3,6 +3,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavLink = (props) => {
 

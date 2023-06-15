@@ -1,6 +1,6 @@
 'use-client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 
 const Clock = (props) => {
@@ -36,7 +36,9 @@ const Clock = (props) => {
 
     return (
         <div className={props.className}>
-            <h1>{formatTime(time)}</h1>
+            <Suspense fallback={<div className="time">Synchronizing...</div>}>
+                <h1>{formatTime(time)}</h1>
+            </Suspense>
         </div>
     )
 }
