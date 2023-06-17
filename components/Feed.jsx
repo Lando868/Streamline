@@ -1,19 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { date } from '@utils/date';
 
 const Feed = (props) => {
 
+    // type == "all" / "recent" / "search" 
+    const type = props.type;
+    const dateFormat = props.dateFormat;
+    const streamDate = date();
 
     const query = props.query;
-
-    const shortDate = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric'
-    }
 
     const [allComments, setAllComments] = useState([]);
 
@@ -30,14 +27,14 @@ const Feed = (props) => {
 
     useEffect(() => {
         fetchComments();
-    }, [props.query]);
+    }, [query]);
 
 
 
     return (
         <div className="comment-feed">
             {allComments
-                .filter(comment => !props.query || comment.asset.title == props.query)
+                .filter(comment => !query || comment.asset.title == query)
                 .slice()
                 .reverse()
                 .map((comment) => (
@@ -54,9 +51,11 @@ const Feed = (props) => {
                             </span>
                             {comment.content}
                             <span
+                                key={index}
                                 onClick={() => props.handleTagClick && props.handleTagClick(comment.tag)}
                                 className="comment-tags">
-                                {comment.tag}
+                                {tag}
+
                             </span>
                         </p>
                     </div>

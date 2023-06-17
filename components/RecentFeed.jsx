@@ -1,19 +1,16 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { date } from '@utils/date';
+
+
+
+const strDate = date();
 
 const RecentFeed = (props) => {
 
 
     const query = props.query;
-
-    const shortDate = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric'
-    }
 
     const [allComments, setAllComments] = useState([]);
 
@@ -30,14 +27,14 @@ const RecentFeed = (props) => {
 
     useEffect(() => {
         fetchComments();
-    }, [props.query]);
+    }, [query]);
 
 
 
     return (
         <div className="comment-feed">
             {allComments
-                .filter(comment => !props.query || comment.asset.title == props.query)
+                .filter(comment => query && comment.asset.title == query)
                 .slice()
                 .reverse()
                 .map((comment) => (
@@ -47,17 +44,23 @@ const RecentFeed = (props) => {
                         {/*{console.log(comment)}*/}
                         <p>
                             <span className="comment-date">
-                                {new Date(comment.createdOn).toLocaleString("en-US", shortDate)}
+                                {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}
                             </span>
                             <span className="asset-title">
                                 {comment.asset.title}:
                             </span>
                             {comment.content}
-                            <span
-                                onClick={() => props.handleTagClick && props.handleTagClick(comment.tag)}
-                                className="comment-tags">
-                                {comment.tag}
-                            </span>
+                            <div className="tag-block">
+                                {comment.tag.map((tag, index) => (
+                                    <span
+                                        key={index}
+                                        onClick={() => props.handleTagClick && props.handleTagClick(tag)}
+                                        className="comment-tags">
+                                        {tag}
+
+                                    </span>
+                                ))}
+                            </div>
                         </p>
                     </div>
                 ))}

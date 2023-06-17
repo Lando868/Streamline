@@ -41,6 +41,7 @@
   --light-grey: #aaaaaa77;
   --title-bg: linear-gradient(160deg, #fff, var(--green-1));
   --title-bg-2: linear-gradient(180deg, var(--dark-2), var(--dark-1));
+  --title-bg-3: linear-gradient(180deg, var(--dark-1) 45%, transparent);
   --site-bg: linear-gradient(10deg, var(--off-white), #777);
   --asset-bg: linear-gradient(10deg, var(--green-3), var(--green-4));
   --tag-bg: linear-gradient(175deg, var(--off-white), var(--green-3));
@@ -68,6 +69,25 @@
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.7));
   }
 }
+
+
+@keyframes breather-lite {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+  }
+
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(6px 8px 10px rgba(0, 0, 0, 0.5));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+  }
+}
+
 
 
 @keyframes colorChange {
@@ -319,6 +339,8 @@ body {
   /* transition: border ease 600ms; */
 }
 
+
+
 .nav-link:hover {
   /* background: var(--green-1); */
   background: var(--dark-1);
@@ -345,18 +367,6 @@ body {
 
 
 
-.nav-link:hover .nav-icon {
-  transition: all cubic-bezier(0.23, 1, 0.320, 1) 300ms;
-  cursor: pointer;
-  /* color: var(--dark-1); */
-  color: var(--green-1);
-  transform: scale(1.5);
-  /* font-size: 2.5rem; */
-  top: 0rem;
-  left: -1rem;
-  opacity: 1;
-  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.4));
-}
 
 
 
@@ -380,6 +390,45 @@ body {
   transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 350ms;
 
 
+}
+
+
+.nav-link:hover .nav-icon {
+  transition: all cubic-bezier(0.23, 1, 0.320, 1) 300ms;
+  cursor: pointer;
+  /* color: var(--dark-1); */
+  color: var(--green-1);
+  transform: scale(1.5);
+  /* font-size: 2.5rem; */
+  top: 0rem;
+  left: -1rem;
+  opacity: 1;
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.4));
+}
+
+
+.nav-icon-highlighted {
+  display: inline;
+  font-size: 4rem;
+  color: var(--dark-1);
+  z-index: 500;
+  margin: 0 1.5rem 1rem 0;
+  position: relative;
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+  opacity: 1;
+  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 350ms;
+  animation-name: breather-lite;
+  animation-duration: 3000ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+
+}
+
+.nav-link:hover .nav-icon-highlighted {
+  opacity: 1;
+  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 350ms;
 }
 
 .link-label-sm {
@@ -427,8 +476,41 @@ body {
 }
 
 
+
+.nav-icon-only-highlighted {
+  width: 100%;
+  font-size: 3rem;
+  text-align: center;
+  color: var(--dark-1);
+  /* color: #bbb; */
+
+  z-index: 500;
+  margin: 0 0rem 0 0;
+  position: absolute;
+  right: 0rem;
+  opacity: 1;
+
+  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 450ms;
+  justify-self: center;
+
+}
+
+
+.nav-link:hover .nav-icon-only-highlighted {
+  font-size: 3.3rem;
+  transform: scale(0.7) rotateY(360deg) translateY(-1.5rem);
+  color: var(--dark-1);
+  transition: all cubic-bezier(0.215, 0.61, 0.355, 1) 800ms;
+
+}
+
+
+
+
+
+
 .nav-link:hover .link-label-sm {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transform: rotateX(360deg) translateY(-0.5rem);
   color: var(--green-1);
   /* color: red; */
@@ -437,6 +519,8 @@ body {
 
 }
 
+
+
 .nav-link:hover .link-label-sm.toggled {
   opacity: 0;
 
@@ -444,7 +528,7 @@ body {
 
 
 .toggled {
-  color: red;
+  /* color: red; */
   /* font-size: 5rem; */
 }
 
@@ -1047,4 +1131,35 @@ body {
   border-radius: 20px;
   transition: all ease-in-out 350ms;
 
+}
+
+
+.modal-testing {
+  /* background: #4285F4; */
+}
+
+.btn-modal {
+  background: var(--asset-bg);
+  width: 20rem;
+  color: var(--dark-2);
+}
+
+.modalive {
+  width: 40vw;
+  height: 40vh;
+  font-family: 'Montserrat';
+  position: relative;
+  left: 25rem;
+  font-size: 2rem;
+  padding: 2rem;
+  opacity: 0;
+  background: var(--nav-bg);
+  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.5));
+  transition: all ease-in-out 300ms;
+
+  /* left: 2 */
+}
+
+.modalive::backdrop {
+  filter: blur(3.5rem);
 }

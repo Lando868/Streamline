@@ -2,7 +2,7 @@
 
 import NavLink from './NavLink';
 import Logo from './Logo';
-import { faLock, faFlaskVial, faDatabase, faCircleInfo, faChartArea, faGears, faDashboard, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faFlaskVial, faDatabase, faCircleInfo, faChartArea, faGears, faDashboard, faInfo, faCodePullRequest } from "@fortawesome/free-solid-svg-icons";
 import { usePathname, useRouter } from "next/navigation";
 
 
@@ -10,7 +10,7 @@ export default function Navigation(props) {
 
     let navToggle = props.collapse ? { opacity: '0', transition: 'opacity  ease 300ms' } : { opacity: '1', transition: 'opacity ease-in-out 450ms 200ms' };
     let iToggle = props.collapse ? { opacity: '0', transform: 'translateX(1rem)' } : {};
-    let iOToggle = props.collapse ? { opacity: '1', transition: 'opacity ease 100ms 450ms, all cubic-bezier(0.215, 0.61, 0.355, 1) 1200ms ' } : { opacity: '0' };
+    let iOToggle = props.collapse ? { opacity: '1', transition: 'opacity ease 100ms 450ms, all cubic-bezier(0.215, 0.61, 0.355, 1) 1200ms' } : { opacity: '0' };
     let toggle_tag = props.collapse ? "link-label-sm" : "link-label-sm toggled";
 
     let navData = { name: 'ASSET LOG', icon: faDatabase };
@@ -20,8 +20,9 @@ export default function Navigation(props) {
     let navChemInv = { name: 'INVENTORY', icon: faGears };
     let navSample = { name: 'SAMPLE DATA', icon: faFlaskVial };
     let navStatus = { name: 'SITE STATUS', icon: faCircleInfo };
+    let navTest = { name: 'TESTING', icon: faCodePullRequest };
 
-    const linkArr = [navData, navProd, navLTT, navReports, navChemInv, navSample, navStatus]
+    const linkArr = [navData, navProd, navLTT, navReports, navChemInv, navSample, navStatus, navTest]
 
     return (
         <nav className="navbar" style={{ width: props.collapse ? props.clspWidth : props.nrmWidth }}>

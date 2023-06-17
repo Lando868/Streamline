@@ -31,6 +31,8 @@ const Dashboard = () => {
     const picSize = '25';
 
     const shiftCheck = shift();
+    const streamDate = date();
+    console.log("streamDate: ", streamDate)
 
     const profileDropdown = {
         opacity: "1",
@@ -96,8 +98,6 @@ const Dashboard = () => {
     const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
 
 
-
-
     useEffect(() => {
         console.log("Site: ", site);
     }, [site]);
@@ -110,12 +110,17 @@ const Dashboard = () => {
     const submitComment = async (e) => {
         e.preventDefault();
         console.log("Comment submitting in progress...");
-        const tags = commentTag.split(/,\s*/);
+        //const tags = commentTag.split(/,\s*/)
+        const tags = commentTag.split(/,\s*|\s+/);
         const tagFilter = tags.filter(substring => substring !== "")
+        {/*tagFilter.forEach((tag) => {
+
+        })*/}
+
         console.log("tags split: ", tags);
 
         try {
-            const res = await fetch("api/asset-log/new", {
+            const res = await fetch("../api/asset-log/new", {
                 method: 'POST',
                 body: JSON.stringify({
                     asset: assetID,
@@ -171,7 +176,7 @@ const Dashboard = () => {
 
             console.log("Uploaded array", uploadedFiles)
 
-            const res = await fetch("api/asset/new", {
+            const res = await fetch("../api/asset/new", {
                 method: 'POST',
                 body: JSON.stringify({
                     title: assetID,
@@ -221,7 +226,7 @@ const Dashboard = () => {
         timer = setTimeout(async () => {
 
             try {
-                const res = await fetch(`api/asset?title=${assetSearch}`);
+                const res = await fetch(`../api/asset?title=${assetSearch}`);
                 const data = await res.json();
 
                 setSearchResult(data);
@@ -277,8 +282,8 @@ const Dashboard = () => {
 
 
     const handleTagClick = (e) => {
-        console.log(e.target);
-        setQueries("lorem");
+        console.log("Tag clicked: ", e);
+        setQueries(e);
     }
 
 
@@ -370,7 +375,7 @@ const Dashboard = () => {
                             icon={faCalendarDays}
                         />
                         <div className="date-and-time">
-                            <p className="date">{date("long")}</p>
+                            <p className="date">{streamDate.header}</p>
                             <Suspense fallback={<div className="time">Synchronizing...</div>}>
                                 <Clock className="time" />
                             </Suspense>
@@ -543,6 +548,7 @@ const Dashboard = () => {
                 <div className="dash-feed">
                     <UpdateFeed
                         className="comment-feed"
+                        site={site}
                         commentSubmit={assetComment}
                         handleTagClick={handleTagClick}
 

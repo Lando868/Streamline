@@ -35,9 +35,10 @@ const Clock = (props) => {
 
 
     return (
-        <div className={props.className}>
+        <div
+            className={props.className}>
             <Suspense fallback={<div className="time">Synchronizing...</div>}>
-                <h1>{formatTime(time)}</h1>
+                <h1 suppressHydrationWarning={true}>{formatTime(time)}</h1>
             </Suspense>
         </div>
     )

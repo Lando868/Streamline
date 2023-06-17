@@ -1,19 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { date } from '@utils/date';
 
 const UpdateFeed = (props) => {
 
-
+    const site = props.site;
     const query = props.query;
 
-    const shortDate = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric'
-    }
+    const strDate = date();
+
 
     const [allComments, setAllComments] = useState([]);
 
@@ -33,11 +29,10 @@ const UpdateFeed = (props) => {
     }, [props.query]);
 
 
-
     return (
         <div className="comment-feed">
             {allComments
-                .filter(comment => !props.query || comment.asset.title == props.query)
+                .filter(comment => !site || comment.asset.site == site)
                 .slice()
                 .reverse()
                 .map((comment) => (
@@ -45,20 +40,23 @@ const UpdateFeed = (props) => {
                         className="comment"
                         key={comment._id}>
                         {/*{console.log(comment)}*/}
-                        <p>
-                            <span className="comment-date">
-                                {new Date(comment.createdOn).toLocaleString("en-US", shortDate)}
-                            </span>
-                            <span className="asset-title">
-                                {comment.asset.title}:
-                            </span>
-                            {comment.content}
-                            <span
-                                onClick={() => props.handleTagClick && props.handleTagClick(comment.tag)}
-                                className="comment-tags">
-                                {comment.tag}
-                            </span>
-                        </p>
+                        <span className="comment-date">
+                            {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}
+                        </span>
+                        <span className="asset-title">
+                            {comment.asset.title}:
+                        </span>
+                        {comment.content}
+                        <div className="tag-block">
+                            {comment.tag.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    onClick={() => props.handleTagClick && props.handleTagClick(tag)}
+                                    className="comment-tags">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 ))}
         </div>

@@ -1,7 +1,15 @@
+export const date = (dateInput) => {
 
-
-export const date = (format) => {
     const today = new Date();
+
+    const dateUsed = dateInput ? dateInput : today;
+
+    const optionsHeader = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        weekday: 'long',
+    }
 
     const optionsLong = {
         weekday: 'long',
@@ -9,6 +17,14 @@ export const date = (format) => {
         month: "long",
         year: "numeric"
     };
+
+    const optionsMedium = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+    }
 
 
     const optionsShort = {
@@ -35,26 +51,30 @@ export const date = (format) => {
     };
 
 
-    const DT = today.toLocaleString("en-US", optionsDT);
-    const dateLong = today.toLocaleDateString("en-US", optionsLong);
-    const dateShort = today.toLocaleDateString("en-US", optionsShort);
-    const dateDay = today.toLocaleDateString("en-US", optionsDay);
-    const time = today.toLocaleTimeString("en-US", optionsTime);
+    const header = dateUsed.toLocaleString("en-US", optionsHeader);
+    const DT = dateUsed.toLocaleString("en-US", optionsDT);
+    const long = dateUsed.toLocaleDateString("en-US", optionsLong);
+    const medium = dateUsed.toLocaleDateString("en-US", optionsMedium);
+    const short = dateUsed.toLocaleDateString("en-US", optionsShort);
+    const day = dateUsed.toLocaleDateString("en-US", optionsDay);
+    const time = dateUsed.toLocaleTimeString("en-US", optionsTime);
 
 
-    if (format === "long") {
-        return dateLong;
-    } else if (format === "short") {
-        return dateShort;
-    } else if (format === "day") {
-        return dateDay;
-    } else if (format === "time") {
-        return time;
-    } else if (format === "DT") {
-        return DT;
+    return {
+        long,
+        medium,
+        short,
+        day,
+        time,
+        DT,
+        header,
+        optionsHeader,
+        optionsLong,
+        optionsMedium,
+        optionsShort,
+        optionsDay,
+        optionsTime,
+        optionsDT,
     }
-
-
 }
-
 
