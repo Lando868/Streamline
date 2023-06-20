@@ -1,9 +1,11 @@
 import Dashboard from "@components/Dashboard";
+import Blank from "@components/Blank";
+// import Carousel from "@components/Carousel";
 
 
 const Status = () => {
     return (
-        <Dashboard />
+        <Blank />
     )
 }
 

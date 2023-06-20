@@ -2,6 +2,7 @@
 
 import '@styles/global.css';
 import '@styles/dashboard.css';
+import '@styles/details.css';
 
 import Navigation from '@components/Navigation';
 import { useState, useRef, useEffect, Suspense } from 'react';

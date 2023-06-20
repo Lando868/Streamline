@@ -9,26 +9,18 @@ const strDate = date();
 
 const RecentFeed = (props) => {
 
-    const fade = props.fade == "" ? true : false;
-
-    const fadeIn = { opacity: "1", transition: "all cubic-bezier(0.19, 1, 0.22, 1) 3000ms" };
-    const fadeOut = { opacity: "0", transition: "all cubic-bezier(0.19, 1, 0.22, 1) 1000ms" };
-
 
     const query = props.query;
 
     const [allComments, setAllComments] = useState([]);
 
     const fetchComments = async () => {
-        const res = await fetch(`/api/asset-log?${query}`);
+        const res = await fetch(`../api/asset-log?${query}`);
         const data = await res.json();
 
         setAllComments(data);
     }
 
-    useEffect(() => {
-        fetchComments();
-    }, [props.commentSubmit]);
 
     useEffect(() => {
         fetchComments();
@@ -37,10 +29,7 @@ const RecentFeed = (props) => {
 
 
     return (
-        <div
-            className="comment-feed"
-            style={fade ? fadeOut : fadeIn}
-        >
+        <div className="comment-feed">
             {allComments
                 .filter(comment => query && comment.asset.title == query)
                 .slice()

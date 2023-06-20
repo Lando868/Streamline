@@ -47,6 +47,8 @@ const Dashboard = () => {
         pointerEvents: "none",
     }
 
+
+
     const dropdownRef = useRef(null);
     const menuRef = useRef(null);
     const uploadRef = useRef([])
@@ -532,6 +534,7 @@ const Dashboard = () => {
                         commentSubmit={assetComment}
                         handleTagClick={handleTagClick}
                         query={assetID}
+                        fade={assetID}
                     />
                 </div>
                 <div

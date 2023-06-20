@@ -7,11 +7,17 @@ export async function middleware(req) {
 
 
     const pathname = req.nextUrl.pathname;
-    const protectedPaths = ["/dashboard"];
-    const isPathProtected = protectedPaths?.some((path) => pathname == path);
+    const protectedPaths = ["/dashboard/"];
+    // const isPathProtected = protectedPaths?.some((path) => pathname == path);
+    const isPathProtected = (path) => {
+        for (let i = 0; i < protectedPaths.length; i++) {
+            const protectedPath = protectedPaths[i];
+            return path.startsWith(protectedPath.slice(0, -1)) ? true : false;
+        }
+    }
     const res = NextResponse.next();
 
-    if (isPathProtected) {
+    if (isPathProtected(pathname)) {
         const token = await getToken({ req });
         if (!token) {
             // const url = new URL('/login', req.url);
