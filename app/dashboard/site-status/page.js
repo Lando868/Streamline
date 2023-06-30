@@ -1,12 +1,11 @@
 import Dashboard from "@components/Dashboard";
-import Blank from "@components/Blank";
-// import Carousel from "@components/Carousel";
+import Status from "@components/Status";
 
 
-const Status = () => {
+const SiteStatus = () => {
     return (
-        <Blank />
+        <Status />
     )
 }
 
-export default Status;
+export default SiteStatus;

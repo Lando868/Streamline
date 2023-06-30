@@ -39,26 +39,24 @@ const RecentFeed = (props) => {
                         className="comment"
                         key={comment._id}>
                         {/*{console.log(comment)}*/}
-                        <p>
-                            <span className="comment-date">
-                                {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}
-                            </span>
-                            <span className="asset-title">
-                                {comment.asset.title}:
-                            </span>
-                            {comment.content}
-                            <div className="tag-block">
-                                {comment.tag.map((tag, index) => (
-                                    <span
-                                        key={index}
-                                        onClick={() => props.handleTagClick && props.handleTagClick(tag)}
-                                        className="comment-tags">
-                                        {tag}
+                        <span className="comment-date">
+                            {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}
+                        </span>
+                        <span className="asset-title">
+                            {comment.asset.title}:
+                        </span>
+                        {comment.content}
+                        <div className="tag-block">
+                            {comment.tag.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    onClick={() => props.handleTagClick && props.handleTagClick(tag)}
+                                    className="comment-tags">
+                                    {tag}
 
-                                    </span>
-                                ))}
-                            </div>
-                        </p>
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 ))}
         </div>

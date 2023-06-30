@@ -10,14 +10,14 @@ import '@styles/dashboard.css';
 
 const NavLink = (props) => {
     const linkUrl = `/dashboard/${kebabCase(props.label)}`;
-    console.log(`linkUrl: ${linkUrl}`);
+    {/*console.log(`linkUrl: ${linkUrl}`);*/ }
 
 
     const pathname = usePathname();
-    console.log("path: ", pathname)
+    {/*console.log("path: ", pathname)*/ }
 
     let navHighlight = linkUrl == pathname ? true : false;
-    console.log("navHighlight: ", navHighlight);
+    {/*console.log("navHighlight: ", navHighlight);*/ }
 
     const highlightedNav = {
         background: "var(--nav-bg)",
@@ -42,14 +42,14 @@ const NavLink = (props) => {
                     icon={props.icon}
                     className={navHighlight ? "nav-icon-only-highlighted" : "nav-icon-only"}
                     style={props.iconOnlyToggle}
-                    onClick={() => console.log(`${props.label} was clicked`)}
+                /*onClick={() => console.log(`${props.label} was clicked`)}*/
                 />
 
                 <FontAwesomeIcon
                     icon={props.icon}
                     className={navHighlight ? "nav-icon-highlighted" : "nav-icon"}
                     style={navHighlight ? {} : props.iconToggle}
-                    onClick={() => console.log(`${props.label} was clicked`)}
+                /*onClick={() => console.log(`${props.label} was clicked`)}*/
                 />
                 <p className="link-label"
                     style={props.toggle}

@@ -4,16 +4,29 @@ export const assetDetails = [
         jargon: ['p2c', 'mp2c', 'ebara p2', 'new p2', 'carbonate pump'],
         desc: "'C' HP Carbonate Pump",
         site: "Urea Plant",
+        area: "Synthesis",
         drawings: [
-            '/assets/images/drawing_1.jpg',
-            '/assets/images/drawing_2.webp',
-            '/assets/images/drawing_3.jpg'
+            '/assets/images/drawings/drawing (4).jpg',
+            '/assets/images/drawings/drawing (1).jpg',
+            '/assets/images/drawings/drawing (2).webp',
+            '/assets/images/drawings/drawing (3).png'
         ],
         pids: [
             "01-GD-A-01558",
             "01-GD-A-01559",
             "01-GD-A-149978",
+            '/assets/images/drawings/drawing (4).jpg',
+            '/assets/images/drawings/drawing (1).jpg',
+            '/assets/images/drawings/drawing (2).webp',
+            '/assets/images/drawings/drawing (3).png'
 
+        ],
+        docs: [
+            '/assets/images/docs/LTT Procedure.pdf',
+            '/assets/images/docs/Rescue Plan.pdf',
+            '/assets/images/docs/SOCL.pdf',
+            '/assets/images/docs/Ventilation Plan (Inspection).pdf',
+            '/assets/images/docs/Ventilation Plan (Welding).pdf'
         ],
         category: "pump",
         type: "reciprocating",
@@ -22,6 +35,7 @@ export const assetDetails = [
         unitTemp: "°C",
         unitPwr: "kW",
         unitCap: "m3/h",
+        unitDim: "m3/h",
         opTemp: "155",
         opPress: "150",
         desTemp: "185",
@@ -41,22 +55,44 @@ export const assetDetails = [
         matOfConst_shell: "-",
         matOfConst_tube: "",
         matOfConst_case: "316L",
+
+
+        dimL: 30,
+        dimW: 30,
+        dimH: 30,
+
+        trips: [
+            {
+                type: "High Pressure Trip",
+                tag: "01PSXH518C",
+                sp: 165,
+            },
+        ],
     },
     {
         title: "01MP03B",
         jargon: ['p3b', 'p3'],
         desc: "'B' LP Carbonate Pump",
         site: "Urea Plant",
+        area: "Purification",
         drawings: [
-            '/assets/images/drawing_1.jpg',
-            '/assets/images/drawing_2.webp',
-            '/assets/images/drawing_3.jpg'
+            '/assets/images/drawings/drawing (2).jpg',
+            '/assets/images/drawings/drawing (1).webp',
+            '/assets/images/drawings/drawing (3).jpg',
+            '/assets/images/drawings/drawing (3).png'
         ],
         pids: [
             "01-GD-A-06013",
             "01-GD-A-06014",
             "01-GD-A-06017",
 
+        ],
+        docs: [
+            '/assets/images/docs/LTT Procedure.pdf',
+            '/assets/images/docs/Rescue Plan.pdf',
+            '/assets/images/docs/SOCL.pdf',
+            '/assets/images/docs/Ventilation Plan (Inspection).pdf',
+            '/assets/images/docs/Ventilation Plan (Welding).pdf'
         ],
         category: "pump",
         type: "centrifugal",
@@ -94,16 +130,26 @@ export const assetDetails = [
         jargon: ['k1a', 'k1', 'atomizer', 'a atomizer', 'blower', 'a blower'],
         desc: "'A' Atomizing Air Blower",
         site: "Urea Plant",
+        area: "Granulation",
         drawings: [
-            '/assets/images/drawing_1.jpg',
-            '/assets/images/drawing_2.webp',
-            '/assets/images/drawing_3.jpg'
+            '/assets/images/drawings/drawing (1).jpg',
+            '/assets/images/drawings/drawing (4).jpg',
+            '/assets/images/drawings/drawing (1).webp',
+            '/assets/images/drawings/drawing (3).jpg',
+            '/assets/images/drawings/drawing (1).png',
         ],
         pids: [
             "01-GD-A-68744",
             "01-GD-C-06648",
             "02-GD-A-33217",
 
+        ],
+        docs: [
+            '/assets/images/docs/LTT Procedure.pdf',
+            '/assets/images/docs/Rescue Plan.pdf',
+            '/assets/images/docs/SOCL.pdf',
+            '/assets/images/docs/Ventilation Plan (Inspection).pdf',
+            '/assets/images/docs/Ventilation Plan (Welding).pdf'
         ],
         category: "blower",
         type: "centrifugal",
@@ -141,16 +187,25 @@ export const assetDetails = [
         jargon: ['cursher', 'a crusher'],
         desc: "'A' Crusher",
         site: "Urea Plant",
+        area: "Granulation",
         drawings: [
-            '/assets/images/drawing_1.jpg',
-            '/assets/images/drawing_2.webp',
-            '/assets/images/drawing_3.jpg'
+            '/assets/images/drawings/drawing (1).webp',
+            '/assets/images/drawings/drawing (2).webp',
+            '/assets/images/drawings/drawing (3).png',
+            '/assets/images/drawings/drawing (4).jpg'
         ],
         pids: [
             "01-GD-C-78994",
             "01-GD-A-45117",
             "03-GD-A-96687",
 
+        ],
+        docs: [
+            '/assets/images/docs/LTT Procedure.pdf',
+            '/assets/images/docs/Rescue Plan.pdf',
+            '/assets/images/docs/SOCL.pdf',
+            '/assets/images/docs/Ventilation Plan (Inspection).pdf',
+            '/assets/images/docs/Ventilation Plan (Welding).pdf'
         ],
         category: "crusher",
         type: "granular",
@@ -194,15 +249,23 @@ export const assetDetails = [
         ],
         desc: "'B' Cooling Water Circulation Pump",
         site: "Urea Plant",
+        area: "Cooling",
         drawings: [
-            '/assets/images/drawing_3.jpg',
-            '/assets/images/drawing_2.webp',
-            '/assets/images/drawing_1.jpg'
+            '/assets/images/drawings/drawing (4).jpg',
+            '/assets/images/drawings/drawing (2).webp',
+            '/assets/images/drawings/drawing (1).jpg'
         ],
         pids: [
             "01-GD-A-88474",
             "01-GD-A-03315",
             "01-GD-A-09987",
+        ],
+        docs: [
+            '/assets/images/docs/LTT Procedure.pdf',
+            '/assets/images/docs/Rescue Plan.pdf',
+            '/assets/images/docs/SOCL.pdf',
+            '/assets/images/docs/Ventilation Plan (Inspection).pdf',
+            '/assets/images/docs/Ventilation Plan (Welding).pdf'
         ],
         category: "pump",
         type: "centrifugal",
@@ -260,9 +323,9 @@ export const assetDetails = [
 //         desc: "'C' HP Carbonate Pump",
 //         site: "Urea Plant",
 //         drawings: [
-//             '/assets/images/drawing_1.jpg',
-//             '/assets/images/drawing_2.webp',
-//             '/assets/images/drawing_3.jpg'
+//             '/assets/images/drawings/drawing (1).jpg',
+//             '/assets/images/drawings/drawing (2).webp',
+//             '/assets/images/drawings/drawing (3).jpg'
 //         ],
 //         category: "pump",
 //         type: "reciprocating",
@@ -305,9 +368,9 @@ export const assetDetails = [
 //         desc: "'B' LP Carbonate Pump",
 //         site: "Urea Plant",
 //         drawings: [
-//             '/assets/images/drawing_1.jpg',
-//             '/assets/images/drawing_2.webp',
-//             '/assets/images/drawing_3.jpg'
+//             '/assets/images/drawings/drawing (1).jpg',
+//             '/assets/images/drawings/drawing (2).webp',
+//             '/assets/images/drawings/drawing (3).jpg'
 //         ],
 //         category: "pump",
 //         type: "centrifugal",
@@ -350,9 +413,9 @@ export const assetDetails = [
 //         desc: "'A' Atomizing Air Blower",
 //         site: "Urea Plant",
 //         drawings: [
-//             '/assets/images/drawing_1.jpg',
-//             '/assets/images/drawing_2.webp',
-//             '/assets/images/drawing_3.jpg'
+//             '/assets/images/drawings/drawing (1).jpg',
+//             '/assets/images/drawings/drawing (2).webp',
+//             '/assets/images/drawings/drawing (3).jpg'
 //         ],
 //         category: "blower",
 //         type: "centrifugal",
@@ -393,9 +456,9 @@ export const assetDetails = [
 //         desc: "'A' Crusher",
 //         site: "Urea Plant",
 //         drawings: [
-//             '/assets/images/drawing_1.jpg',
-//             '/assets/images/drawing_2.webp',
-//             '/assets/images/drawing_3.jpg'
+//             '/assets/images/drawings/drawing (1).jpg',
+//             '/assets/images/drawings/drawing (2).webp',
+//             '/assets/images/drawings/drawing (3).jpg'
 //         ],
 //         category: "crusher",
 //         type: "granular",
@@ -444,9 +507,9 @@ export const assetDetails = [
 //         desc: "'B' Cooling Water Circulation Pump",
 //         site: "Urea Plant",
 //         drawings: [
-//             '/assets/images/drawing_1.jpg',
-//             '/assets/images/drawing_2.webp',
-//             '/assets/images/drawing_3.jpg'
+//             '/assets/images/drawings/drawing (1).jpg',
+//             '/assets/images/drawings/drawing (2).webp',
+//             '/assets/images/drawings/drawing (3).jpg'
 //         ],
 //         category: "pump",
 //         type: "centrifugal",

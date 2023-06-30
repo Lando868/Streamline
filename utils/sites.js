@@ -1,0 +1,1 @@
+export const sites = ["01/02/OSBL", "03 Plant", "04 Plant", "Urea Plant", "Demin Plant", "UFC-85", "Product Handling"]

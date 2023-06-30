@@ -32,9 +32,17 @@ export const date = (dateInput) => {
         month: "short"
     };
 
+    const optionsDayShort = {
+        day: "numeric",
+    }
+
     const optionsDay = {
         weekday: 'long',
     };
+
+    const optionsMonthShort = {
+        month: "short"
+    }
 
     const optionsTime = {
         hour: "numeric",
@@ -55,9 +63,11 @@ export const date = (dateInput) => {
     const DT = dateUsed.toLocaleString("en-US", optionsDT);
     const long = dateUsed.toLocaleDateString("en-US", optionsLong);
     const medium = dateUsed.toLocaleDateString("en-US", optionsMedium);
-    const short = dateUsed.toLocaleDateString("en-US", optionsShort);
+    const short = dateUsed.toLocaleDateString("en-UK", optionsShort);
     const day = dateUsed.toLocaleDateString("en-US", optionsDay);
     const time = dateUsed.toLocaleTimeString("en-US", optionsTime);
+    const dayShort = dateUsed.toLocaleTimeString("en-US", optionsDayShort);
+    const monthShort = dateUsed.toLocaleTimeString("en-US", optionsMonthShort);
 
 
     return {
@@ -75,6 +85,8 @@ export const date = (dateInput) => {
         optionsDay,
         optionsTime,
         optionsDT,
+        dayShort,
+        monthShort
     }
 }
 

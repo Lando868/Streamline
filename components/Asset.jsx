@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link.js";
 import Header from "./Header.jsx";
 import Search from "./Search.jsx";
 import DetailFeed from "./DetailFeed";
@@ -47,13 +48,19 @@ const Asset = () => {
                 className="asset-data"
                 style={searchedDetails ? fadeIn : fadeOut}
             >
-                <Detail
-                    className="detail"
-                    details={searchedDetails}
-                    title="service"
-                    value="service"
-                />
+                <div className="detail-dual detail">
+                    <Detail
 
+                        details={searchedDetails}
+                        title="site"
+                        value="site"
+                    />
+                    <Detail
+                        details={searchedDetails}
+                        title="area"
+                        value="area"
+                    />
+                </div >
                 <div className="detail detail-dual">
                     <Detail
                         details={searchedDetails}
@@ -66,6 +73,12 @@ const Asset = () => {
                         value="type"
                     />
                 </div >
+                <Detail
+                    className="detail"
+                    details={searchedDetails}
+                    title="service"
+                    value="service"
+                />
                 <div className="detail-dual detail">
                     <Detail
 
@@ -124,13 +137,15 @@ const Asset = () => {
                     title="number of tubes"
                     value="numOfTubes"
                 />
-
-                <DetailDocs
+                <Detail
                     className="detail"
                     details={searchedDetails}
-                    title="P&ID's"
-                    value="pids"
+                    title="number of tubes"
+                    value="numOfTubes"
                 />
+
+
+
             </div>
 
             <div
@@ -139,21 +154,42 @@ const Asset = () => {
 
             >
                 {searchedDetails?.drawings?.map((src, index) => (
-                    <>
+                    <Link
+                        href={src}
+                        target="_blank"
+                        key={index}
+                    >
                         <div className="drawing">
                             <Image
                                 className="drawings"
-                                key={index}
                                 src={src}
                                 width={400}
                                 height={500}
                                 alt="asset-drawing"
+                                loading="lazy"
                             />
                         </div>
-                    </>
+                    </Link>
 
                 ))}
 
+            </div>
+            <div
+                className="asset-docs"
+                style={searchedDetails ? fadeIn : fadeOut}
+            >
+                <DetailDocs
+                    className="detail doc-detail"
+                    details={searchedDetails}
+                    title="P&ID's"
+                    value="pids"
+                />
+                <DetailDocs
+                    className="detail doc-detail"
+                    details={searchedDetails}
+                    title="Associated Documents"
+                    value="docs"
+                />
             </div>
             <div
                 className="asset-comments"

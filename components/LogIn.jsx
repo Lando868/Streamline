@@ -86,7 +86,7 @@ const LogIn = () => {
                             width={btnLogo}
                             height={btnLogo}
                             alt='nutrien-logo'
-                            className='nutrien-logo'
+                            className='ntr-logo'
                         />
                         Sign in with Nutrien
                     </button>

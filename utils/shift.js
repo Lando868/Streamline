@@ -14,7 +14,7 @@ export const shift = () => {
 
     RD7A = shiftDate.setHours(7, 0, 0, 0);
     RD7P = shiftDate.setHours(19, 0, 0, 0);
-    source = currentHour > 7 ? RD7A - refDate : RD7P - refDate;
+    source = currentHour >= 7 ? RD7A - refDate : RD7P - refDate;
     daysDiff = source / (1000 * 60 * 60 * 24);
     shiftCode = (daysDiff % 8);
 

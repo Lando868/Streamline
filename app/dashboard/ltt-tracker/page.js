@@ -1,10 +1,8 @@
-import Dashboard from "@components/Dashboard";
-
-import React from 'react'
+import InDev from "@components/InDev";
 
 const LTT = () => {
     return (
-        <Dashboard />
+        <InDev />
     )
 }
 

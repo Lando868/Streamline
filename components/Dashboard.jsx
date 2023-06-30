@@ -17,6 +17,7 @@ import Feed from "./Feed";
 import RecentFeed from "./RecentFeed";
 import UpdateFeed from "./UpdateFeed";
 import SearchFeed from "./SearchFeed";
+import Header from "./Header";
 
 
 
@@ -341,6 +342,9 @@ const Dashboard = () => {
 
 
 
+    const siteSelect = (selected) => {
+        setSite(selected);
+    }
 
 
 
@@ -350,81 +354,10 @@ const Dashboard = () => {
     return (
         <div>
             <div className="dash-overall">
-                <div className="dash-header">
-                    <select name="site"
-                        className="site-select"
-                        onChange={(e) => { e.preventDefault(); setSite(e.target.value) }}
-                        value={site}
-                    >
-                        <option className="dropdown" value="default" >Select your site...</option>
-                        <option className="dropdown">01/02/OSBL</option>
-                        <option className="dropdown">03 Plant</option>
-                        <option className="dropdown">04 Plant</option>
-                        <option className="dropdown">Urea Plant</option>
-                        <option className="dropdown">Demin Plant</option>
-                        <option className="dropdown">UFC-85</option>
-                        <option className="dropdown">Product Handling</option>
-                    </select>
-                    <div className="shift-block">
-                        {/*<p className="shift"> {date("day")}</p>*/}
-                        <span className="shift"> {shiftCheck.shift} </span>
-                        <span className="shift-word">Shift</span>
-                        <span className="rotation">{shiftCheck.rotation} </span>
-                    </div>
-                    <div className="date-block">
-                        <FontAwesomeIcon
-                            className="calendar"
-                            icon={faCalendarDays}
-                        />
-                        <div className="date-and-time">
-                            <p className="date">{streamDate.header}</p>
-                            <Suspense fallback={<div className="time">Synchronizing...</div>}>
-                                <Clock className="time" />
-                            </Suspense>
-                            <span className="period">{shiftCheck.period}</span>
-                        </div>
-
-
-                    </div>
-                    <div
-                        ref={dropdownRef}
-                        className="profile"
-                        onClick={toggleDropdown}
-                    >
-                        <Image
-                            style={{ borderRadius: "50%" }}
-                            src={userImg}
-                            width={picSize}
-                            height={picSize}
-                            alt="profile-image"
-                        />
-                        <p className="logged-in-as">{userLoggedIn}</p>
-                        <FontAwesomeIcon
-                            className="dropdown-arrow"
-                            style={isDropdownOpen ? { transform: "rotateX(180deg)", transition: "all ease 600ms" } : { transition: "all ease 800ms" }}
-                            icon={faCaretDown}
-                        />
-                        <div
-                            ref={menuRef}
-                            className="profile-menu"
-                            style={isDropdownOpen ? { ...profileDropdown } : { ...profileHidden }}
-                        >
-                            <div
-                                className="log-out"
-                                onClick={signOut}
-                            >
-                                <FontAwesomeIcon
-                                    className="log-out-icon"
-                                    icon={faRightFromBracket}
-                                />
-                                <span className="log-out-text">Log Out</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
+                <Header
+                    page="asset-log"
+                    handleSelect={siteSelect}
+                />
                 <div className="dash-entry">
                     <form
                         className="search-form"

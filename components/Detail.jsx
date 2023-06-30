@@ -1,3 +1,4 @@
+import { units } from "@utils/units";
 
 const Detail = ({ details, title, value, className }) => {
 
@@ -7,10 +8,7 @@ const Detail = ({ details, title, value, className }) => {
             <p className="detail-value">
                 {details?.[value] !== "" ? details[value] : "-"}
                 <span className="detail-unit">
-                    {value.includes("Temp") ? "°C" : ""}
-                    {value.includes("Press") ? "kg/cm²" : ""}
-                    {value.includes("Voltage") ? "V" : ""}
-                    {value.includes("Cap") ? "m³" : ""}
+                    {units.map(({ type, unit }) => value.includes(type) && unit)}
                 </span>
             </p>
         </div>

@@ -21,6 +21,7 @@
 
   --nav-width: 20vw;
   --logo-sq: 2.5rem;
+  --btn-space: 100px;
 
   --green-1: #b7ff00;
   --green-2: #5b7f00;
@@ -42,6 +43,7 @@
   --title-bg: linear-gradient(160deg, #fff, var(--green-1));
   --title-bg-2: linear-gradient(180deg, var(--dark-2), var(--dark-1));
   --title-bg-3: linear-gradient(180deg, var(--dark-1) 45%, transparent);
+  --rate-bg: linear-gradient(270deg, var(--grey), #fff);
   --site-bg: linear-gradient(10deg, var(--off-white), #777);
   --asset-bg: linear-gradient(10deg, var(--green-3), var(--green-4));
   --tag-bg: linear-gradient(175deg, var(--off-white), var(--green-3));
@@ -85,6 +87,20 @@
   100% {
     transform: scale(1);
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+  }
+}
+
+@keyframes breathe-only {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -592,10 +608,9 @@ body {
 
 .copy {
   font-size: 2.4rem;
-  /* color: #fff; */
-  font-weight: 300;
+  font-weight: 400;
   margin: 1rem;
-  background: var(--off-white);
+  background: var(--rate-bg);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
@@ -603,16 +618,15 @@ body {
   filter: opacity(0);
   animation: fade-in-3 4400ms cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards 2100ms;
   user-select: none;
+  letter-spacing: 2px;
 }
 
 .divider {
   width: 80%;
   height: 1px;
   border: none;
-  background: var(--nav-bg);
+  background: var(--title-bg);
   filter: opacity(0);
-  /* position: absolute; */
-  /* top: 40%; */
   animation: fade-in-3 3100ms cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards 3200ms;
 }
 
@@ -946,29 +960,45 @@ body {
 
 
 .google-btn {
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  background: #4285F4;
-  background: linear-gradient(90deg, #fff 20%, #4285F4 20%);
-  color: #fff;
   margin-top: 2rem;
   position: relative;
   transition: all ease-in-out 800ms;
   background-size: 400% 400%;
   background-position: 20%;
+  background-repeat: no-repeat; */
+
+  display: grid;
+  grid-template-columns: var(--btn-space) calc(100% - var(--btn-space));
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  color: #fff;
+  background: linear-gradient(90deg, #fff 20%, #4285F4 20%);
+  background-size: 800% 400%;
   background-repeat: no-repeat;
+  background-position: 20%;
+  margin-top: 2rem;
+  transition:
+    all cubic-bezier(0.47, 0, 0.745, 0.115) 400ms,
+    background-position cubic-bezier(0.47, 0, 0.745, 0.715) 550ms,
+    color cubic-bezier(0.47, 0, 0.745, 0.715) 550ms;
 
 }
 
 .google-btn:hover {
-  background: #fff;
-  /* background-position: -8%; */
-
+  background-position: 0%;
   color: #4285F4;
-  transition: all ease-in-out 600ms;
+  transition:
+    all cubic-bezier(0.47, 0, 0.745, 0.715) 250ms,
+    background-position cubic-bezier(0.47, 0, 0.745, 0.715) 750ms,
+    color cubic-bezier(0.47, 0, 0.745, 0.715) 750ms;
 }
+
 
 .google-btn:active {
   background: #fff;
@@ -978,39 +1008,41 @@ body {
 }
 
 .google-logo {
-  display: inline;
-  height: auto;
-  margin: 0 2rem 0 1rem;
-  position: relative;
-  left: -1rem;
-  /* top: 50%; */
-  /* bottom: 50%; */
-
+  grid-column: 1 / 2;
+  align-self: center;
+  justify-self: center;
 }
 
 
 
 
 .ntr-btn {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: var(--btn-space) calc(100% - var(--btn-space));
+  justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(90deg, #fff 20%, var(--ntr-green-2) 20%);
+  position: relative;
+  background-size: 800% 400%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(90deg, #fff 20%, var(--ntr-green-2) 20%);
+  background-position: 20%;
   color: #fff;
   margin-top: 2rem;
-  position: relative;
-  transition: all ease-in-out 800ms;
-  background-size: 400% 400%;
-  background-position: 20%;
-  background-repeat: no-repeat;
+  transition:
+    all cubic-bezier(0.47, 0, 0.745, 0.115) 400ms,
+    background-position cubic-bezier(0.47, 0, 0.745, 0.715) 550ms,
+    color cubic-bezier(0.47, 0, 0.745, 0.715) 550ms;
 
 }
 
 .ntr-btn:hover {
-  background: #fff;
+  background-position: 0%;
   color: #000;
-  transition: all ease-in-out 600ms;
+  transition:
+    all cubic-bezier(0.47, 0, 0.745, 0.715) 250ms,
+    background-position cubic-bezier(0.47, 0, 0.745, 0.715) 750ms,
+    color cubic-bezier(0.47, 0, 0.745, 0.715) 750ms;
 }
 
 .ntr-btn:active {
@@ -1021,14 +1053,9 @@ body {
 }
 
 .ntr-logo {
-  display: inline;
-  height: auto;
-  margin: 0 2rem 0 1rem;
-  position: relative;
-  left: -1rem;
-  /* top: 50%; */
-  /* bottom: 50%; */
-
+  grid-column: 1 / 2;
+  align-self: center;
+  justify-self: center;
 }
 
 
@@ -1092,6 +1119,17 @@ body {
   animation-duration: 20s;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, -0.94);
 }
+
+
+.user-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 300ms;
+
+}
+
 
 .profile-pic {
   object-fit: cover;
@@ -1162,4 +1200,58 @@ body {
 
 .modalive::backdrop {
   filter: blur(3.5rem);
+}
+
+.in-dev {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 5rem;
+  background: var(--dark-2);
+
+
+}
+
+.dev {
+  font-size: 10rem;
+  font-weight: 600;
+  position: absolute;
+  background: var(--title-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 5;
+  filter: drop-shadow(-4px 2px 2px #b7ff0030) blur(1px);
+  animation-name: breathe-only;
+  animation-duration: 8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+
+}
+
+.code-brackets {
+  font-size: 95rem;
+  font-weight: 600;
+  position: absolute;
+  /* top: 2rem; */
+  margin: 0;
+  padding: 0;
+  /* left: 5rem; */
+  background: var(--nav-bg);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: 0;
+  filter: blur(5px);
+  opacity: 0.1;
+  animation-name: breathe-only;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+
 }

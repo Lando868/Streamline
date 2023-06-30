@@ -3,6 +3,9 @@
 import NavLink from './NavLink';
 import Logo from './Logo';
 import { faLock, faFlaskVial, faDatabase, faCircleInfo, faChartArea, faGears, faDashboard, faInfo, faCodePullRequest } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "fontAwesome";
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core';
 import { usePathname, useRouter } from "next/navigation";
 
 
@@ -22,7 +25,7 @@ export default function Navigation(props) {
     let navStatus = { name: 'SITE STATUS', icon: faCircleInfo };
     let navTest = { name: 'TESTING', icon: faCodePullRequest };
 
-    const linkArr = [navData, navProd, navLTT, navReports, navChemInv, navSample, navStatus, navTest]
+    const linkArr = [navData, navStatus, navProd, navLTT, navReports, navChemInv, navSample, navTest]
 
     return (
         <nav className="navbar" style={{ width: props.collapse ? props.clspWidth : props.nrmWidth }}>

@@ -1,11 +1,13 @@
 'use-client';
-
-import { useState, useEffect, Suspense } from "react";
+import '@styles/status.css';
+import { useState, useEffect } from "react";
+import { shift } from '@utils/shift';
 
 
 const Clock = (props) => {
 
     const [time, setTime] = useState(new Date());
+    const shiftCheck = shift();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -28,7 +30,12 @@ const Clock = (props) => {
         const hoursConv = hours24 == 0 || hours24 == 12 ? 12 : hours24 > 0 && hours24 < 12 ? hours24 : hours24 - 12;
         const hours12 = hoursConv.toString();
 
-        return `${hours12} : ${minutes} : ${seconds}`
+        {/*return `${hours12} : ${minutes} : ${seconds}`*/ }
+        return {
+            hours12,
+            minutes,
+            seconds
+        }
     }
 
 
@@ -36,10 +43,14 @@ const Clock = (props) => {
 
     return (
         <div
-            className={props.className}>
-            <Suspense fallback={<div className="time">Synchronizing...</div>}>
-                <h1 suppressHydrationWarning={true}>{formatTime(time)}</h1>
-            </Suspense>
+            className={`clockwise ${props.className}`}>
+            <span suppressHydrationWarning={true} className="clock hours">{formatTime(time).hours12}</span>
+            <span className="clock-colon-1">:</span>
+            <span suppressHydrationWarning={true} className="clock minutes">{formatTime(time).minutes}</span>
+            <span className="clock-colon-2">:</span>
+            <span suppressHydrationWarning={true} className="clock seconds">{formatTime(time).seconds}</span>
+            <span suppressHydrationWarning={true} className="clock-period">{shiftCheck.period}</span>
+            {/*<h1 suppressHydrationWarning={true}>{formatTime(time)}</h1>*/}
         </div>
     )
 }

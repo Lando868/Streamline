@@ -1,11 +1,10 @@
-import Dashboard from "@components/Dashboard";
 
-import React from 'react'
+import Production from "@components/Production";
 
-const Production = () => {
+const ProductionDashboard = () => {
     return (
-        <Dashboard />
+        <Production />
     )
 }
 
-export default Production;
+export default ProductionDashboard;

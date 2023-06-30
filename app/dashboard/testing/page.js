@@ -5,10 +5,7 @@ import Asset from "@components/Asset";
 
 const Testing = () => {
     return (
-        <Asset
-
-
-        />
+        <Asset />
     )
 }
 

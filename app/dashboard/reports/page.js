@@ -1,9 +1,10 @@
-import Dashboard from "@components/Dashboard";
+import InDev from "@components/InDev";
 
 
 const Reports = () => {
     return (
-        <Dashboard />
+        <InDev />
+
     )
 }
 
