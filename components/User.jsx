@@ -15,15 +15,21 @@ const User = () => {
 
     return (
         <div className="user-block">
-            <Image
-                style={{ borderRadius: "50%" }}
-                src={userImg ? userImg : "/assets/images/gear1.png"}
-                width={picSize}
-                height={picSize}
-                alt="profile-image"
 
+            {userImg?.length > 1 ?
+                <Image
+                    style={{ borderRadius: "50%" }}
+                    src={userImg ? userImg : "/assets/images/gear1.png"}
+                    width={picSize}
+                    height={picSize}
+                    alt="profile-image"
+                />
+                :
+                <div className="user-initial">
+                    <span>{userImg}</span>
+                </div>
 
-            />
+            }
             <p className="logged-in-as">{userLoggedIn}</p>
         </div>
     )

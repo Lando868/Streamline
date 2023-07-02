@@ -40,7 +40,7 @@ const SearchFeed = (props) => {
             (comment) => query && (
                 regex.test(comment.content) ||
                 regex.test(comment.asset.title) ||
-                regex.test(comment.createdBy.username) ||
+                regex.test(comment.createdBy?.username) ||
                 regex.test(comment.asset.desc) ||
                 regex.test(comment.asset.jargon) ||
                 regex.test(comment.asset.site) ||

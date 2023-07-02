@@ -11,6 +11,8 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import google_logo from "../public/assets/images/google_logo.png";
 import ntr_logo from "../public/assets/images/ntr_logo.png";
 
+import RegisterModal from "./RegisterModal";
+
 
 
 const LogIn = () => {
@@ -20,6 +22,7 @@ const LogIn = () => {
 
     const [providers, setProviders] = useState(null);
     const [error, setError] = useState("");
+    const [genericPassword, setGenericPassword] = useState("generic")
 
     useEffect(() => {
         (async () => {
@@ -34,10 +37,11 @@ const LogIn = () => {
     const handleNTRLogin = async (e) => {
         e.preventDefault();
         const username = e.target.username.value;
-        const password = e.target.password.value;
+        // const password = e.target.password.value;
+        const password = genericPassword;
         const result = await signIn("Nutrien", {
             username: username,
-            password,
+            // password,
             redirect: false,
             callbackUrl: callbackUrl,
         });
@@ -90,6 +94,7 @@ const LogIn = () => {
                         />
                         Sign in with Nutrien
                     </button>
+
                     <button
                         type='button'
                         key='Google'
