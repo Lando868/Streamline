@@ -8,10 +8,12 @@ import Analytic from './Analytic';
 import ProdEntry from './ProdEntry';
 import ProdTable from './ProdTable';
 import ProdCard from './ProdCard';
+import { date } from '@utils/date';
 
 const Production = (props) => {
 
     const days = Array.from({ length: 31 }, (_, index) => index + 1);
+    const strDate = date();
 
     return (
         <div className="dash-prod">
@@ -19,9 +21,9 @@ const Production = (props) => {
 
             <div className="prod-section-title">
                 <span className="section-title-site">Urea Plant:</span>
-                <span className="section-title">Production Summary for</span>
-                <span className="prod-month">June</span>
-                <span className="prod-date">27<span className="prod-date-suffix">th</span>
+                <span className="section-title-chart">Production Summary for</span>
+                <span className="prod-month">{strDate.month}</span>
+                <span className="prod-date">{strDate.date}<span className="prod-date-suffix">{strDate.nth}</span>
 
                 </span>
             </div>
@@ -33,7 +35,7 @@ const Production = (props) => {
             <div className="prod-aggregates">
                 <div className="table-title-block">
                     <span className="sub-text">MTD Analytics</span>
-                    <h1 className="table-title"> June 2023</h1>
+                    <h1 className="table-title">{`${strDate.month} ${strDate.year}`}</h1>
                 </div>
                 <Analytic
                     className="analytic-block"

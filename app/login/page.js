@@ -1,8 +1,9 @@
 'use client';
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+
 
 const LoginPage = () => {
     const [error, setError] = useState("");

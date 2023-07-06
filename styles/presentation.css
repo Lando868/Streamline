@@ -1,0 +1,189 @@
+@import './global.css';
+
+:root {
+    --border-size: 8rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
+
+}
+
+.presentation {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    background: var(--dark-2);
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 5000ms;
+
+
+}
+
+
+
+.section-title {
+    background: var(--rate-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10rem 15rem;
+    position: absolute;
+    filter: drop-shadow(2px 2px 2px #b7ff0044);
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 10ms;
+
+    /* animation: title-animate 100s cubic-bezier(0.23, 1, 0.320, -1) alternate infinite; */
+}
+
+.section-title::before,
+.section-title::after {
+    content: "";
+    height: var(--border-size);
+    width: var(--border-size);
+    filter: drop-shadow(5px 4px 5px rgba(0, 0, 0, 0.0));
+    position: absolute;
+    border-image-slice: 1;
+    opacity: 0.5;
+    animation-play-state: paused;
+    animation: borderland 30s cubic-bezier(0.23, 1, 0.320, -1) alternate infinite;
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 10ms;
+
+}
+
+
+.section-title::before {
+    left: 0;
+    bottom: 5rem;
+    border-width: 0 0 0.2rem 0.3rem;
+    border-image: var(--title-bg);
+    border-image-slice: 1;
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 10ms;
+
+
+}
+
+
+.section-title::after {
+    right: 0;
+    top: 5rem;
+    border-width: 0.3rem 0.2rem 0 0;
+    border-image: var(--nav-bg);
+    border-image-slice: 1;
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 10ms;
+
+}
+
+
+.presentation section {
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    font-size: 12rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 5000ms;
+    user-select: none;
+    overflow: hidden;
+}
+
+
+.question {
+    font-size: 50rem;
+    opacity: 0;
+    filter: blur(10px);
+    position: relative;
+}
+
+
+.define {
+    /* background: var(--dark-1); */
+    opacity: 0;
+    filter: blur(10px);
+    position: relative;
+}
+
+
+.solution {
+    /* background: var(--title-bg-2); */
+    opacity: 0;
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 5000ms;
+    filter: blur(10px);
+    position: relative;
+
+}
+
+.bolded {
+    font-weight: 700;
+}
+
+.buffer {
+    background: var(--dark-2);
+    position: relative;
+
+
+}
+
+.login {
+    animation-play-state: paused;
+    opacity: 0;
+    filter: blur(10px);
+}
+
+
+.visible {
+    opacity: 1;
+    letter-spacing: 2px;
+    filter: blur(0);
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 5000ms;
+
+}
+
+
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+
+}
+
+
+
+@keyframes borderland {
+    0% {
+        width: var(--border-size);
+        height: var(--border-size);
+        /* transform: translateX(0px); */
+
+    }
+
+    20% {
+        width: 15rem;
+        height: 10rem;
+        /* transform: translateX(50px); */
+
+    }
+
+    50% {
+        width: 50rem;
+        height: 20rem;
+        /* transform: translateX(50px); */
+
+    }
+
+    80% {
+        width: 180rem;
+        height: 80rem;
+        /* transform: translateX(50px); */
+
+    }
+
+    100% {
+        width: 100rem;
+        height: 90rem;
+        /* transform: translateX(50px); */
+
+    }
+}

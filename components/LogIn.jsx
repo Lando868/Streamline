@@ -15,7 +15,7 @@ import RegisterModal from "./RegisterModal";
 
 
 
-const LogIn = () => {
+const LogIn = (props) => {
 
     const router = useRouter();
     const callbackUrl = (router.query?.callbackUrl || "/").toString();
@@ -60,16 +60,29 @@ const LogIn = () => {
 
 
     return (
-        <section className="landing" >
+        <section
+            className="landing"
+            style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}>
             <FontAwesomeIcon
                 icon={faGear}
                 className="gear"
+                style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
             />
-            <h1 className="title">STREAMLINE</h1>
-            <p className="copy">Harnessing the Power of Data</p>
-            <hr className="divider" />
-            <div className="welcome-login-group">
-                <form className="form-login" onSubmit={handleNTRLogin}>
+            <h1
+                className="title"
+                style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+            >
+                STREAMLINE
+            </h1>
+            <p
+                style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                className="copy">Harnessing the Power of Data</p>
+            <hr style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                className="divider" />
+            <div style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                className="welcome-login-group">
+                <form style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                    className="form-login" onSubmit={handleNTRLogin}>
                     {!!error && <p className="login-error">{error}</p>}
                     <div className="username-div">
                         <input type="text" name="username" className="username" required autoComplete="off" />

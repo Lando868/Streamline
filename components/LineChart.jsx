@@ -11,6 +11,7 @@ import {
 
 import { Line, Bar } from 'react-chartjs-2';
 import faker from 'faker';
+import { date } from '@utils/date';
 
 ChartJS.register(
     CategoryScale,
@@ -42,7 +43,11 @@ export const options = {
 
 };
 
-const labels = Array.from({ length: 31 }, (_, index) => index + 1);
+const days = new Date().getDate();
+
+
+const label = Array.from({ length: days }, (_, index) => index + 1);
+const labels = Array.from({ length: 30 }, (_, index) => index + 1);
 
 
 export const data = {
@@ -50,7 +55,7 @@ export const data = {
     datasets: [
         {
             label: "Urea",
-            data: labels.map(() => faker.datatype.number({ min: 1580, max: 2120 })),
+            data: label.map(() => faker.datatype.number({ min: 1580, max: 2120 })),
             borderColor: '#b7ff00',
             backgroundColor: '#2b2f2f',
         },

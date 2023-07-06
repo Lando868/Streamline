@@ -6,13 +6,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-export default function Landing() {
+export default function Landing(props) {
 
     const [isLoggedIn, SetIsLoggedIn] = useState(false);
 
     return (
 
-        isLoggedIn ? <Dashboard /> : <LogIn />
+        isLoggedIn ? <Dashboard /> : <LogIn loaded={props.show} />
 
     )
 }

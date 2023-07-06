@@ -70,12 +70,7 @@ const Dashboard = () => {
     const [querySearch, setQuerySearch] = useState("");
 
 
-
-
     {/*const [profileToggle, setProfileToggle] = useState(false);*/ }
-
-
-
 
     const uploaded = uploadRef.current;
     {/*console.log("Initial filelist: ", uploaded.files);*/ }
@@ -116,9 +111,6 @@ const Dashboard = () => {
         //const tags = commentTag.split(/,\s*/)
         const tags = commentTag.split(/,\s*|\s+/);
         const tagFilter = tags.filter(substring => substring !== "")
-        {/*tagFilter.forEach((tag) => {
-
-        })*/}
 
         console.log("tags split: ", tags);
 
