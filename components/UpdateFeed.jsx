@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { date } from '@utils/date';
 
+import { logs } from '@utils/logs';
+
 const UpdateFeed = (props) => {
 
     const site = props.site;
@@ -14,10 +16,11 @@ const UpdateFeed = (props) => {
     const [allComments, setAllComments] = useState([]);
 
     const fetchComments = async () => {
-        const res = await fetch(`/api/asset-log?${query}`);
+        {/*        const res = await fetch(`/api/asset-log?${query}`);
         const data = await res.json();
 
-        setAllComments(data);
+        setAllComments(data);*/}
+        setAllComments(logs);
     }
 
     useEffect(() => {
@@ -32,7 +35,8 @@ const UpdateFeed = (props) => {
     return (
         <div className="comment-feed">
             {allComments
-                .filter(comment => !site || comment.asset.site == site)
+                /*.filter(comment => !site || comment.asset.site == site)*/
+                .filter(comment => !site || comment.site == site)
                 .slice()
                 .reverse()
                 .map((comment) => (
@@ -44,7 +48,8 @@ const UpdateFeed = (props) => {
                             {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}
                         </span>
                         <span className="asset-title">
-                            {comment.asset.title}:
+                            {/*{comment.asset.title}:*/}
+                            {comment.asset}:
                         </span>
                         {comment.content}
                         <div className="tag-block">

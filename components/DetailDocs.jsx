@@ -28,7 +28,7 @@ const DetailDocs = ({ details, title, value, className }) => {
             printWindow.onload = () => {
                 printWindow.print();
                 // console.log("Original tab", window)
-                printWindow.close();
+                {/*printWindow.close();*/ }
 
 
 

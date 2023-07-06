@@ -9,6 +9,7 @@ import DetailFeed from "./DetailFeed";
 import { assetDetails } from "@utils/assetDetails";
 import Detail from "./Detail.jsx";
 import DetailDocs from "./DetailDocs.jsx";
+import { logs } from "@utils/logs.js";
 
 
 
@@ -23,6 +24,7 @@ const Asset = () => {
 
     const searchResult = (data) => {
         console.log("Searched ID from <Search />: ", data);
+        // const queryDetails = assetDetails.find((details) => details.title === data.title);
         const queryDetails = assetDetails.find((details) => details.title === data.title);
         setSearchedAsset(data);
         setSearchedDetails(queryDetails)

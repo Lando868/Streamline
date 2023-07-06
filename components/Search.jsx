@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "fontAwesome";
 import { faRightFromBracket, faCaretDown, faCalendarDays, faMagnifyingGlass, faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import Input1 from "./Input1";
 import TextArea1 from "./TextArea1";
+import { assetDetails } from "@utils/assetDetails";
+
 
 
 const Search = (props) => {
@@ -28,6 +30,8 @@ const Search = (props) => {
 
 
 
+
+
     const delay = 50;
     let timer;
 
@@ -40,10 +44,32 @@ const Search = (props) => {
         timer = setTimeout(async () => {
 
             try {
-                const res = await fetch(`../api/asset?title=${assetSearch}`);
-                const data = await res.json();
+                {/*const res = await fetch(`../api/asset?title=${assetSearch}`);
+                const data = await res.json();*/}
+                // setSearchResult(data);
 
-                setSearchResult(data);
+
+
+                // Searching using assetDetail from utils to test no database conditions during demo
+
+                const data = assetDetails.filter(asset => {
+                    const regex = new RegExp(assetSearch, 'i');
+                    return (
+                        asset.title.match(regex) ||
+                        asset.desc.match(regex) ||
+                        asset.jargon.some(jargonItem => jargonItem.match(regex))
+                    );
+                });
+                if (assetSearch.length > 0) {
+                    setSearchResult(data);
+
+                } else {
+                    setSearchResult([]);
+
+                }
+
+
+
                 console.log("searchResult: ", searchResult);
 
             } catch (error) {
@@ -185,6 +211,7 @@ const Search = (props) => {
                         key={index}
                         className="result"
                         onClick={() => {
+                            // setAssetID(result.title);
                             setAssetID(result.title);
                             props.searchedID(result);
                             setAssetDesc(result.desc);

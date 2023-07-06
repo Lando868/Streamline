@@ -18,6 +18,9 @@ import RecentFeed from "./RecentFeed";
 import UpdateFeed from "./UpdateFeed";
 import SearchFeed from "./SearchFeed";
 import Header from "./Header";
+import { assetDetails } from "@utils/assetDetails";
+import { logs } from "@utils/logs";
+
 
 
 
@@ -221,11 +224,31 @@ const Dashboard = () => {
         timer = setTimeout(async () => {
 
             try {
-                const res = await fetch(`../api/asset?title=${assetSearch}`);
-                const data = await res.json();
+                // const res = await fetch(`../api/asset?title=${assetSearch}`);
+                // const data = await res.json();
 
-                setSearchResult(data);
-                console.log("searchResult: ", searchResult);
+                // setSearchResult(data);
+                // console.log("searchResult: ", searchResult);
+
+
+
+                // Searching using assetDetail from utils to test no database conditions during demo
+
+                const data = assetDetails.filter(asset => {
+                    const regex = new RegExp(assetSearch, 'i');
+                    return (
+                        asset.title.match(regex) ||
+                        asset.desc.match(regex) ||
+                        asset.jargon.some(jargonItem => jargonItem.match(regex))
+                    );
+                });
+                if (assetSearch.length > 0) {
+                    setSearchResult(data);
+
+                } else {
+                    setSearchResult([]);
+
+                }
 
             } catch (error) {
                 console.log("Search error: ", error)

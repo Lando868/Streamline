@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import escapeRegExp from 'escape-string-regexp';
 
 import { date } from '@utils/date';
+import { logs } from '@utils/logs';
 
 
 
@@ -18,10 +19,13 @@ const SearchFeed = (props) => {
     const [allComments, setAllComments] = useState([]);
 
     const fetchComments = async () => {
-        const res = await fetch(`/api/asset-log?${query}`);
-        const data = await res.json();
+        // const res = await fetch(`/api/asset-log?${query}`);
+        // const data = await res.json();
 
-        setAllComments(data);
+        // setAllComments(data);
+        setAllComments(logs);
+
+
     }
 
     useEffect(() => {
@@ -39,7 +43,8 @@ const SearchFeed = (props) => {
         return allComments.filter(
             (comment) => query && (
                 regex.test(comment.content) ||
-                regex.test(comment.asset.title) ||
+                regex.test(comment.asset) ||
+                // regex.test(comment.asset.title) ||
                 regex.test(comment.createdBy?.username) ||
                 regex.test(comment.asset.desc) ||
                 regex.test(comment.asset.jargon) ||
@@ -68,7 +73,8 @@ const SearchFeed = (props) => {
                             {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}
                         </span>
                         <span className="asset-title">
-                            {comment.asset.title}:
+                            {comment.asset}:
+                            {/* {comment.asset.title}: */}
                         </span>
                         {comment.content}
                         <div className="tag-block">
