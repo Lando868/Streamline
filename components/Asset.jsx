@@ -139,12 +139,7 @@ const Asset = () => {
                     title="number of tubes"
                     value="numOfTubes"
                 />
-                <Detail
-                    className="detail"
-                    details={searchedDetails}
-                    title="number of tubes"
-                    value="numOfTubes"
-                />
+
 
 
 

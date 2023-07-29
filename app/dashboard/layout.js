@@ -1,5 +1,9 @@
 'use client';
 
+
+import { HistorianProvider } from '@context/HistorianContext';
+import { StatusLayoutProvider } from '@context/StatusLayoutContext';
+
 import Navigation from '@components/Navigation';
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { useSession } from "next-auth/react";
@@ -43,23 +47,27 @@ export default function DashboardLayout({ children }) {
 
     return (
         <div>
-            <Navigation
-                collapse={navCollapsed}
-                nrmWidth={normalWidth}
-                clspWidth={collapsedWidth}
-            />
-            <FontAwesomeIcon
-                icon={faAnglesLeft}
-                className="nav-toggle"
-                onClick={toggleNav}
-                style={navCollapsed ? { transform: 'rotateZ(180deg)', left: '3vw', fontSize: '2rem' } : { fontSize: '2rem' }}
-            />
-            <div
-                className="dashboards"
-                style={navCollapsed ? collapsedCanvas : openCanvas}
-            >
-                {children}
-            </div>
+            <HistorianProvider>
+                <StatusLayoutProvider>
+                    <Navigation
+                        collapse={navCollapsed}
+                        nrmWidth={normalWidth}
+                        clspWidth={collapsedWidth}
+                    />
+                    <FontAwesomeIcon
+                        icon={faAnglesLeft}
+                        className="nav-toggle"
+                        onClick={toggleNav}
+                        style={navCollapsed ? { transform: 'rotateZ(180deg)', left: '3vw', fontSize: '2rem' } : { fontSize: '2rem' }}
+                    />
+                    <div
+                        className="dashboards"
+                        style={navCollapsed ? collapsedCanvas : openCanvas}
+                    >
+                        {children}
+                    </div>
+                </StatusLayoutProvider>
+            </HistorianProvider>
         </div>
 
     )

@@ -1268,3 +1268,30 @@ body {
   animation-direction: normal;
 
 }
+
+
+.tungsten {
+  font-size: 2rem;
+  padding: 2rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 25vw;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+}
+
+
+.tungsten::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tungsten::-webkit-scrollbar-track {
+  background-color: var(--green-5);
+}
+
+.tungsten::-webkit-scrollbar-thumb {
+  background-color: var(--green-2);
+}

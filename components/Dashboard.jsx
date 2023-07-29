@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from "next-auth/react";
-import { useState, useRef, useEffect, Suspense } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 
@@ -20,12 +20,14 @@ import SearchFeed from "./SearchFeed";
 import Header from "./Header";
 import { assetDetails } from "@utils/assetDetails";
 import { logs } from "@utils/logs";
+import StatusContext from "@context/StatusLayoutContext";
 
 
 
 
 const Dashboard = () => {
     const router = useRouter();
+    const { expanded, toggleView, site, setSite } = useContext(StatusContext);
 
     const { data: session } = useSession();
     {/*console.log("Session values: ", session ? session : "whyyyy!!!!");*/ }
@@ -59,7 +61,6 @@ const Dashboard = () => {
     const searchRef = useRef("");
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [site, setSite] = useState("");
     const [asset, setAsset] = useState("");
     const [content, setContent] = useState("");
     const [assetID, setAssetID] = useState("");
@@ -102,10 +103,6 @@ const Dashboard = () => {
     useEffect(() => {
         console.log("Site: ", site);
     }, [site]);
-
-
-
-
 
 
     const submitComment = async (e) => {

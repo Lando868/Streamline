@@ -1,10 +1,13 @@
-import Dashboard from "@components/Dashboard";
 import Status from "@components/Status";
+import { useContext } from "react";
+import { StatusLayoutProvider } from "@context/StatusLayoutContext";
+
 
 
 const SiteStatus = () => {
     return (
         <Status />
+
     )
 }
 

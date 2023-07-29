@@ -3,7 +3,7 @@ export const shift = () => {
     const refDate = new Date('December 31, 2016 7:00');
     const now = new Date();
     const currentHour = now.getHours();
-    let shiftDate, RD7A, RD7P, source, daysDiff, shiftCode, shift, rotation, period, prevDay;
+    let shiftDate, RD7A, RD7P, ND7A, source, daysDiff, shiftCode, shift, rotation, period, prevDay;
 
     prevDay = now.getDate() - 1;
     period = currentHour < 12 ? "am" : "pm";
@@ -13,6 +13,7 @@ export const shift = () => {
 
     RD7A = shiftDate.setHours(7, 0, 0, 0);
     RD7P = shiftDate.setHours(19, 0, 0, 0);
+
     source = currentHour >= 7 && currentHour <= 19 ? RD7A - refDate : RD7P - refDate;
     daysDiff = source / (1000 * 60 * 60 * 24);
     shiftCode = (daysDiff % 8);

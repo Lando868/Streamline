@@ -6,7 +6,9 @@ export const assetDetails = [
         site: "Urea Plant",
         area: "Synthesis",
         drawings: [
-            '/assets/images/drawings/drawing (4).jpg',
+            'https://ui.sharepoint.com/:b:/r/sites/tno/DraftingAndDocumentControl/TNOMR/UREA%20-%20Urea/PRO%20-%20Process/PID%20-%20Piping%20and%20Instrumentation%20Diagram/01-GD-A-87505.pdf',
+            "https://ui.sharepoint.com/sites/tno/DraftingAndDocumentControl/TNOMR/UREA%20-%20Urea/PRO%20-%20Process/PID%20-%20Piping%20and%20Instrumentation%20Diagram/01-GD-A-87505.pdf",
+            "http://www.svlele.com/cad/stgtank.gif",
             '/assets/images/drawings/drawing (1).jpg',
             '/assets/images/drawings/drawing (2).webp',
             '/assets/images/drawings/drawing (3).png'
@@ -15,6 +17,7 @@ export const assetDetails = [
             "01-GD-A-01558",
             "01-GD-A-01559",
             "01-GD-A-149978",
+            'https://ui.sharepoint.com/:b:/r/sites/tno/DraftingAndDocumentControl/TNOMR/UREA%20-%20Urea/PRO%20-%20Process/PID%20-%20Piping%20and%20Instrumentation%20Diagram/01-GD-A-87505.pdf?csf=1&web=1&e=pfPvmL',
             '/assets/images/drawings/drawing (4).jpg',
             '/assets/images/drawings/drawing (1).jpg',
             '/assets/images/drawings/drawing (2).webp',

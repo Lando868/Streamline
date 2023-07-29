@@ -39,10 +39,10 @@ const UpdateFeed = (props) => {
                 .filter(comment => !site || comment.site == site)
                 .slice()
                 .reverse()
-                .map((comment) => (
+                .map((comment, index) => (
                     <div
                         className="comment"
-                        key={comment._id}>
+                        key={index}>
                         {/*{console.log(comment)}*/}
                         <span className="comment-date">
                             {new Date(comment.createdOn).toLocaleString("en-US", strDate.optionsMedium)}

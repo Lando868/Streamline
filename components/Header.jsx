@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useContext, useEffect } from "react";
 import { sites } from "@utils/sites";
 import Dropdown from "./Dropdown";
 import ProfileMenu from "./Profile";
@@ -12,16 +12,20 @@ import { shift } from "@utils/shift";
 import { date } from "@utils/date";
 
 import { FontAwesomeIcon } from "fontAwesome";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faGrip, faTableList } from "@fortawesome/free-solid-svg-icons";
+
+import StatusContext from "@context/StatusLayoutContext";
 
 
 
 const Header = (props) => {
 
+    const { expanded, toggleView, site, setSite } = useContext(StatusContext);
+
     const streamDate = date();
     const shiftCheck = shift();
 
-    const [site, setSite] = useState("");
+    // const [site, setSite] = useState("");
 
     useEffect(() => {
         console.log("Site: ", site);
@@ -69,16 +73,22 @@ const Header = (props) => {
                         <span className="site-code">TNO</span>
                     </div>
 
-
-
-                    <FontAwesomeIcon
-                        className="status-calendar"
-                        icon={faCalendarDays}
-                    />
-                    <div className="status-date-block">
-                        <span className="status-weekday"> {streamDate.day}</span>
-                        <span className="status-date"> {streamDate.short}</span>
+                    <div className="date-and-calendar">
+                        <FontAwesomeIcon
+                            className="status-calendar"
+                            icon={faCalendarDays}
+                        />
+                        <div className="status-date-block">
+                            <span className="status-weekday"> {streamDate.day}</span>
+                            <div className="ordinal-date">
+                                <span className="status-date"> {streamDate.date}</span>
+                                <span className="status-nth"> {streamDate.nth}</span>
+                                <span className="status-month"> {streamDate.month}</span>
+                                <span className="status-year"> {streamDate.year}</span>
+                            </div>
+                        </div>
                     </div>
+
                     <div className="status-time-block">
                         <Clock className="status-time" />
                     </div>
@@ -88,7 +98,25 @@ const Header = (props) => {
                         <span className="status-shift-word">Shift</span>
                         <span className="status-rotation">{shiftCheck.rotation}</span>
                     </div>
+                    <div className="toggles">
+                        <p>Toggle View :</p>
+                        <FontAwesomeIcon
+                            className="toggle-icon-simple"
+                            // icon={expanded ? faTableList : faGrip}
+                            icon={faGrip}
+                            onClick={() => toggleView(true)}
+                            style={expanded ? { color: "var(--green-1)" } : { color: "var(--light-grey)" }}
 
+                        />
+                        <FontAwesomeIcon
+                            className="toggle-icon-detailed"
+                            icon={faTableList}
+                            onClick={() => toggleView(false)}
+                            style={expanded ? { color: "var(--light-grey)" } : { color: "var(--green-1)" }}
+
+
+                        />
+                    </div>
 
                     <ProfileMenu />
                 </div>
