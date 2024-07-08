@@ -2,10 +2,10 @@ import { tungsten } from "@utils/tungsten";
 
 export const GET = async (req, { params }) => {
 
-    console.log("tungsten fetch: ", req)
+    // console.log("tungsten fetch: ", req)
     const url = new URL(req.url, 'http://localhost:3000');
     const tag = new URLSearchParams(url.searchParams).get("tag");
-    console.log("tungsten query: ", tag)
+    // console.log("tungsten query: ", tag)
 
     try {
         const res = await fetch(`${tungsten.latestValue}=${tag}&${tungsten.latestFields}`,
@@ -22,7 +22,7 @@ export const GET = async (req, { params }) => {
         }
 
         const data = await res.json();
-        console.log("TUNGSTEN SERVER: ", data);
+        // console.log("TUNGSTEN SERVER: ", data);
         return new Response(JSON.stringify(data));
 
 

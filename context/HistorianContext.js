@@ -9,6 +9,7 @@ export const HistorianProvider = ({ children }) => {
 
     const [phdData, setPhdData] = useState([]);
     const [phdDataSite, setPhdDataSite] = useState([]);
+    const [ureaProd, setUreaProd] = useState([]);
 
     const phd = async (req) => {
         try {
@@ -57,24 +58,46 @@ export const HistorianProvider = ({ children }) => {
 
     };
 
+    const phdMultiple = async (req) => {
+        try {
+            const res = await fetch(`../api/tungsten/tags-values-multiple`, {
+                method: 'GET',
+            })
+
+            if (!res.ok) {
+                throw new Error("Tungsten context multiple query failed!")
+            }
+
+            const data = await res.json();
+            console.log("TUNGSTEN SERVER (multiple context call): ", data);
+            setUreaProd(data);
+
+
+        } catch (error) {
+            console.log("TUNGSTEN SERVER ERROR (multiple context call): ", error);
+            return new Response("Failed to fetch multiple tag data via context call", { status: 500 });
+
+        }
+
+    };
+
 
     useEffect(() => {
-
-
-
         phd();
         phdSite();
+        phdMultiple();
 
         setInterval(() => {
             phd();
             phdSite();
+            phdMultiple();
         }, 300000);
     }, []);
 
 
 
     return (
-        <HistorianContext.Provider value={{ phdData, phdDataSite }}>
+        <HistorianContext.Provider value={{ phdData, phdDataSite, ureaProd }}>
             {children}
         </HistorianContext.Provider>
     )

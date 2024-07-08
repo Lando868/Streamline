@@ -48,7 +48,8 @@ const Status = () => {
     const status_01 = phdSite("P_RATE_1.PV").value?.toFixed(1);
     const status_02 = phdSite("P_RATE_2.PV").value?.toFixed(1);
     const status_03 = phdSite("PRATE_3.PV").value?.toFixed(1);
-    const status_04 = phdSite("O4_FI8016B.PV").value?.toFixed(1);
+    const status_04 = 0.0;
+    // const status_04 = phdSite("O4_FI8016B.PV").value?.toFixed(1);
     const status_urea = ureaCalc(phdUrea("01_FI_104.DACA.PV").value).currentRate.toFixed(1);
 
 

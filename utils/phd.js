@@ -187,6 +187,10 @@ export const phd_site = [
 
 
 
+export const phd_fqi = [
+    "01_FI_104.01_FQI_104.PV"
+]
+
 
 export const phdX = [
     "01_AI_61.DACA.PV",

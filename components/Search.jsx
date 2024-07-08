@@ -226,6 +226,7 @@ const Search = (props) => {
                             {result.desc.substring(0, 70)}
                         </span>
                     </p>
+
                 ))}
             </div>
 

@@ -1,3 +1,7 @@
+import { useState, useContext, useEffect } from "react";
+import HistorianContext from "@context/HistorianContext";
+import StatusContext from "@context/StatusLayoutContext";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -12,6 +16,7 @@ import {
 import { Line, Bar } from 'react-chartjs-2';
 import faker from 'faker';
 import { date } from '@utils/date';
+
 
 ChartJS.register(
     CategoryScale,
@@ -47,7 +52,7 @@ const days = new Date().getDate();
 
 
 const label = Array.from({ length: days }, (_, index) => index + 1);
-const labels = Array.from({ length: 30 }, (_, index) => index + 1);
+const labels = Array.from({ length: 31 }, (_, index) => index + 1);
 
 
 export const data = {
@@ -71,6 +76,14 @@ export const data = {
 
 const LineChart = (props) => {
 
+    const { ureaProd } = useContext(HistorianContext);
+    const { expanded, toggleView, site, setSite } = useContext(StatusContext);
+
+    const ureaProduction = ureaProd
+        .filter(item => item?.TimeStamp?.includes('10:00:00Z'))
+        .map(item => item?.DoubleValue);
+
+    console.log("Urea Production: ", ureaProduction);
 
 
     return (

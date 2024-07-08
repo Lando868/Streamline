@@ -1,7 +1,7 @@
 export const assetDetails = [
     {
         title: "01MP02C",
-        jargon: ['p2c', 'mp2c', 'ebara p2', 'new p2', 'carbonate pump'],
+        jargon: ['p2c', 'mp2c', 'ebara p2', 'new p2', 'carbonate pump', 'pantor pump'],
         desc: "'C' HP Carbonate Pump",
         site: "Urea Plant",
         area: "Synthesis",

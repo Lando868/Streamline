@@ -170,7 +170,7 @@ const StatusUrea = (props) => {
             <div className="kpi-block kpi-granulation">
 
                 <div className="detailed-kpi detailed-nozzles">
-                    <p className="kpi">7 <span className="nozzles-x">x</span> 6</p>
+                    <p className="kpi">6 <span className="nozzles-x">x</span> 7</p>
                     <span className="unit"></span>
                     <span className="detailed-kpi-text">Nozzles</span>
                 </div>

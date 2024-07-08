@@ -1,5 +1,5 @@
-import '@styles/global.css';
 import '@styles/dashboard.css';
+import '@styles/global.css';
 import '@styles/details.css';
 import '@styles/status.css';
 import '@styles/production.css';
