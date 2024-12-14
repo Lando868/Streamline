@@ -1,4 +1,4 @@
-import Analytic from "./Analytic";
+import Analytic from "./Analytic.jsx";
 
 
 const StatusUrea = (props) => {
@@ -170,7 +170,7 @@ const StatusUrea = (props) => {
             <div className="kpi-block kpi-granulation">
 
                 <div className="detailed-kpi detailed-nozzles">
-                    <p className="kpi">6 <span className="nozzles-x">x</span> 7</p>
+                    <p className="kpi">{Math.floor(phd("02_FI_2A.DACA.PV").value / 6).toFixed(0)}<span className="nozzles-x"> x </span>{Math.floor(phd("02_FI_2B.DACA.PV").value / 6).toFixed(0)}</p>
                     <span className="unit"></span>
                     <span className="detailed-kpi-text">Nozzles</span>
                 </div>

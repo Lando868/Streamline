@@ -1,10 +1,14 @@
 import { tungsten } from "@utils/tungsten";
 import { phd_urea } from "@utils/phd";
 import { phd_fqi } from "@utils/phd";
+import { getTungstenAccess } from "@utils/getTungstenAccess";
 
 export const GET = async (req, { params }) => {
 
-    // console.log("tungsten fetch: ", req)
+    const accessToken = await getTungstenAccess();
+    console.log(`TAGS-VALUES-MULTIPLE: Access Token: ${accessToken}`);
+    
+    // console.log("TAGS-VALUES-MULTIPLE: Tungsten fetch: ", req)
     const url = new URL(req.url, 'http://localhost:3000');
     const tag = new URLSearchParams(url.searchParams).get("tag");
     // console.log("tungsten query: ", tag)
@@ -25,12 +29,13 @@ export const GET = async (req, { params }) => {
                 method: "GET",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${process.env.TUNGSTEN_BEARER}`,
+                    // Authorization: `Bearer ${process.env.TUNGSTEN_BEARER}`,
+                    Authorization: `Bearer ${accessToken}`
                 },
             });
 
         if (!res.ok) {
-            throw new Error("Tungsten multiple query failed!")
+            throw new Error("TAGS-VALUES-MULTIPLE: Tungsten multiple query failed!")
         }
 
         const data = await res.json();
@@ -39,7 +44,7 @@ export const GET = async (req, { params }) => {
 
 
     } catch (error) {
-        console.log("TUNGSTEN SERVER ERROR: ", error);
+        console.log("TAGS-VALUES-MULTIPLE: TUNGSTEN SERVER ERROR: ", error);
         return new Response("Failed to fetch tag", { status: 500 });
 
     }

@@ -5,8 +5,6 @@ import { connectToDB } from '@utils/database';
 import User from '@models/user';
 
 
-
-
 const handler = NextAuth({
     providers: [
         Credentials({
@@ -97,7 +95,7 @@ const handler = NextAuth({
     //     strategy: 'jwt',
     // },
     callbacks: {
-        async jwt({ token, user, account, profile }) {
+        async jwt({ token, user, account, profile}) {
             if (user) {
                 console.log("JWT User: ", user);
                 console.log("user.id: ", user.id);

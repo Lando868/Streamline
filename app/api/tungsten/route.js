@@ -1,8 +1,10 @@
 import { tungsten } from "@utils/tungsten";
+import { getTungstenAccess } from "@utils/getTungstenAccess";
 
 export const GET = async (req, { params }) => {
 
     // console.log("tungsten fetch: ", req)
+    const accessToken = await getTungstenAccess();
     const url = new URL(req.url, 'http://localhost:3000');
     const tag = new URLSearchParams(url.searchParams).get("tag");
     // console.log("tungsten query: ", tag)
@@ -13,7 +15,8 @@ export const GET = async (req, { params }) => {
                 method: "GET",
                 headers: {
                     accept: "application/json",
-                    Authorization: `Bearer ${process.env.TUNGSTEN_BEARER}`,
+                    // Authorization: `Bearer ${process.env.TUNGSTEN_BEARER}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
             });
 
@@ -27,7 +30,7 @@ export const GET = async (req, { params }) => {
 
 
     } catch (error) {
-        console.log("TUNGSTEN SERVER ERROR: ", error);
+        console.log("THIS TUNGSTEN SERVER ERROR: ", error);
         return new Response("Failed to fetch tag", { status: 500 });
 
     }

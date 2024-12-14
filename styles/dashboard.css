@@ -272,7 +272,7 @@ select[value="default"] {
 }
 
 .time .hours {
-  justify-self: center;
+  justify-self: right;
 }
 
 

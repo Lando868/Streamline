@@ -468,10 +468,13 @@
 }
 
 .hours {
-    position: absolute;
+    display: flex;
+    justify-self: right;
+    /* position: relative; */
     grid-row: 1 / -1;
     grid-column: 1 / 2;
     letter-spacing: 4px;
+
 
 
 
@@ -485,6 +488,8 @@
 
 .minutes {
     position: absolute;
+    display: flex;
+    justify-self: right;
     grid-row: 1 / -1;
     grid-column: 3 / 4;
     letter-spacing: 4px;
@@ -500,6 +505,8 @@
 
 .seconds {
     position: absolute;
+    display: flex;
+    justify-self: center;
     grid-row: 1 / -1;
     grid-column: 5 / 6;
     letter-spacing: 4px;

@@ -30,7 +30,7 @@ const Dashboard = () => {
     const { expanded, toggleView, site, setSite } = useContext(StatusContext);
 
     const { data: session } = useSession();
-    {/*console.log("Session values: ", session ? session : "whyyyy!!!!");*/ }
+    console.log("Session values: ", session ? session : "whyyyy!!!!");
 
     const userLoggedIn = session?.user.name;
     const userImg = session?.user.image;

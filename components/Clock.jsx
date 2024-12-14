@@ -1,5 +1,5 @@
 'use-client';
-import '@styles/status.css';
+{/*import '@styles/status.css';*/ }
 import { useState, useEffect } from "react";
 import { shift } from '@utils/shift';
 
@@ -32,6 +32,7 @@ const Clock = (props) => {
 
         {/*return `${hours12} : ${minutes} : ${seconds}`*/ }
         return {
+            hours24,
             hours12,
             minutes,
             seconds

@@ -97,7 +97,7 @@ export const HistorianProvider = ({ children }) => {
 
 
     return (
-        <HistorianContext.Provider value={{ phdData, phdDataSite, ureaProd }}>
+        <HistorianContext.Provider value={{ phdData, phdDataSite, ureaProd}}>
             {children}
         </HistorianContext.Provider>
     )

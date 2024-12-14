@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
+    "jsx": "react-jsx", // For React 17+ using JSX runtime
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
     "paths": {
-      "@*": ["./*"]
+      "@*": [
+        "./*"
+      ]
     }
   }
 }
