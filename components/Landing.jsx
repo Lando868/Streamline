@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 
 export default function Landing(props) {
 
+    const [loaded, setLoaded] = useState(false)
     const [isLoggedIn, SetIsLoggedIn] = useState(false);
 
     return (

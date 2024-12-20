@@ -34,6 +34,7 @@ export async function getTungstenAccess() {
     const data = await response.json();
 
     cachedToken = data.access_token;
+    // cachedToken = "eyJraWQiOiJsR3ZDNkJ6VGFMdHQ2SGxYb2M3SlNic21WaVhwODhvOWZmcER0dU10TWxzPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2cmJvaXF1MzFjbzM0dDFiZWtjZGtoY3VoNSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoidHJhbnNhY3Rpb25zXC9wb3N0IHRyYW5zYWN0aW9uc1wvZ2V0IiwiYXV0aF90aW1lIjoxNzM0MzIzOTc0LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0yLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMl9ZQlRobW94UXgiLCJleHAiOjE3MzQ0MTAzNzQsImlhdCI6MTczNDMyMzk3NCwidmVyc2lvbiI6MiwianRpIjoiYmZlMzZjMjItODBkNy00YTE3LTgwZjgtMjg3ZTU3ZWYyODMxIiwiY2xpZW50X2lkIjoiNnJib2lxdTMxY28zNHQxYmVrY2RraGN1aDUifQ.O7Z8VICAwuauBzVyubk6FVPk-G4uPKRmuQ_8_78oeYT86wVHxAO5GsAB4PKfuRAH94TaBj0wmnDs_IPbqAJ3xz3NwbgEMeDo7StaeHlvddPUbanEPVAtpfrafi36f5Y97IVskvAm6GU_5gVmuI0_hncSEYQjhURgm78QsgiMesIgtRmI9SB0z6fX6GSXhuckhk_KKadSNUu4S6kEcMdH-hW741Q9NKBmyj2PkfaSObRYroWKaquJZD1YaRSZvthF0IWpXTYwXu6b_veZ5amEgZzI_NdoPcYjUNWSnCyBvAmDphM3xMm_NZZs9N2BZ4thvDGXeP8q_TRJWbZATo9Mvw";
 
     console.log(`Expires in: ${data.expires_in}`)
     // tokenExpiryTime = 86400 * 1000;
@@ -46,15 +47,9 @@ export async function getTungstenAccess() {
             minute: 'numeric',
             second: 'numeric'});
 
-    let fNow = new Date(Date.now()).toLocaleTimeString("en-US",{
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'});
+    
 
-    console.log(`CURRENT TIME: New token fetched and cached at ${fTime}`);
-    console.log(`NOW: New token fetched and cached at ${fNow}`);
+    
     console.log(`Token Expiry Time (ms): ${tokenExpiryTime}`);
     console.log(`Token Expiry Time (formatted): ${new Date(tokenExpiryTime).toLocaleTimeString("en-US",{
         month: 'short',

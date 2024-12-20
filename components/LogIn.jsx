@@ -15,7 +15,7 @@ import RegisterModal from "./RegisterModal";
 
 
 
-const LogIn = (props) => {
+const LogIn = ({ loaded = true }) => {
 
     const router = useRouter();
     const callbackUrl = (router.query?.callbackUrl || "/").toString();
@@ -62,26 +62,26 @@ const LogIn = (props) => {
     return (
         <section
             className="landing"
-            style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}>
+            style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}>
             <FontAwesomeIcon
                 icon={faGear}
                 className="gear"
-                style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
             />
             <h1
                 className="title"
-                style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
             >
                 STREAMLINE
             </h1>
             <p
-                style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
                 className="copy">Harnessing the Power of Data</p>
-            <hr style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+            <hr style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
                 className="divider" />
-            <div style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+            <div style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
                 className="welcome-login-group">
-                <form style={props.loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
+                <form style={loaded ? { animationPlayState: "running" } : { animationPlayState: "paused" }}
                     className="form-login" onSubmit={handleNTRLogin}>
                     {!!error && <p className="login-error">{error}</p>}
                     <div className="username-div">

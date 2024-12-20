@@ -5,7 +5,7 @@ import { getTungstenAccess } from "@utils/getTungstenAccess";
 
 export const GET = async (req, { params }) => {
     const accessToken = await getTungstenAccess();
-    console.log(`TAGS: Access Token: ${accessToken}`);
+    // console.log(`TAGS: Access Token: ${accessToken}`);
     
     // console.log("TAGS: tungsten fetch: ", req)
 

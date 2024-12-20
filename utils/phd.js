@@ -1,3 +1,10 @@
+export const ureaSamples = [
+    "TNO/Urea/Composite_Sample_-_Moisture",
+    "TNO/Urea/Composite_Sample_-_Biuret",
+    "TNO/Urea/Composite_Sample_-_Formaldehyde",
+    // https://tungsten-api.nutrien.com/v1/operations/tungsten/system/suez/tag/values?tagName=TNO/Urea/Composite_Sample_-_Moisture&startTime=2024-12-16T00:14:48.915Z&endTime=2024-12-16T06:14:48.915Z
+]
+
 
 export const phd = [
     "02_TI_1_5A.DACA.PV",
@@ -132,29 +139,16 @@ export const phd_urea = [
     "04_PIC_4.PIDA.OP",
     "UREA_ENERGY.DIVA_2.OUT",
 
-    "P_RATE_2.PV", // 01/02/OSBL
-    "P_RATE_1.PV",
-    "P_RATE_2.PV",
-    "FT2033.PV",
-    "FT2036.PV",
-    "FT302.PV",
-    "PIC72_01.PV",
-    "PIC72_01.OP",
-    "PIC72_02.PV",
-    "PIC72_02.OP",
-    "FT2033.PV",
-    "FT2036.PV",
+    // DEMIN
+    "D5-FIT-3007.PV",   // 050 A M/BED
+    "D5-FIT-3008.PV",   // 050 B M/BED
+    "FIT-44-4020A.PV",  // 04 A M/BED
+    "FIT-44-4020B.PV",  // 04 B M/BED
+    "FIT-44-4020C.PV",  // 04 C M/BED
+    "FV-2331A.PV",      // 03 A M/BED
+    "FV-2331B.PV",      // 03 B M/BED
 
-    "PRATE_3.PV", // 03 Plant
-    "PIC728.PV",
-    "PIC728.OP",
-    "FI4006.PV",
-    "FY9021.PV",
 
-    "O4_FI8016B", //04 Plant
-    "O4_FI8016S",
-    "O4_FI8033",
-    "O4_FI8033S",
 ]
 
 
@@ -183,6 +177,7 @@ export const phd_site = [
     "O4_FI8016S",
     "O4_FI8033",
     "O4_FI8033S",
+    "O4_HIC1001",
 ]
 
 

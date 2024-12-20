@@ -74,6 +74,8 @@ export const date = (dateInput) => {
         month: 'long'
     }
 
+
+
     const header = dateUsed.toLocaleString("en-US", optionsHeader);
     const DT = dateUsed.toLocaleString("en-US", optionsDT);
     const long = dateUsed.toLocaleDateString("en-US", optionsLong);
@@ -117,5 +119,43 @@ export const date = (dateInput) => {
         month,
         year
     }
+}
+
+
+export const times = (timePeriod) => {
+    
+    const now = new Date();
+    const isoString = now.toISOString(); // eg. "2024-12-15T21:00:00.000Z"
+
+    // Adjust for the local timezone offset
+    const timezoneOffset = -now.getTimezoneOffset(); // Offset in minutes
+    const offsetHours = String(Math.floor(Math.abs(timezoneOffset) / 60)).padStart(2, "0");
+    const offsetMinutes = String(Math.abs(timezoneOffset) % 60).padStart(2, "0");
+    const sign = timezoneOffset >= 0 ? "+" : "-";
+
+    // Construct the ISO8601 timestamp with timezone
+    const localIsoString = `${isoString.slice(0, -1)}${sign}${offsetHours}:${offsetMinutes}`;
+
+
+    // Format local date and time
+    const formattedTimestamp = now.toLocaleString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+
+    // Encode the timestamp for the API call
+    const encUTC = encodeURIComponent(localIsoString);
+    const encLocale = encodeURIComponent(formattedTimestamp);
+
+    console.log("Local ISO8601 Timestamp:", localIsoString);
+    console.log("Encoded Timestamp:", encUTC);
+
+    return {localIsoString, encUTC, encLocale};
 }
 

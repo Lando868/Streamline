@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { tungsten } from "@utils/tungsten";
-import { phd } from "@utils/phd";
 
 const TungstenTest = () => {
     const [phd_urea, setPHD_urea] = useState([]);

@@ -482,6 +482,8 @@
 
 .clock-colon-1 {
     position: absolute;
+    display: flex;
+    justify-self: left;
     grid-row: 1 / -1;
     grid-column: 2 / 3;
 }
@@ -489,7 +491,7 @@
 .minutes {
     position: absolute;
     display: flex;
-    justify-self: right;
+    justify-self: center;
     grid-row: 1 / -1;
     grid-column: 3 / 4;
     letter-spacing: 4px;
@@ -498,6 +500,8 @@
 
 .clock-colon-2 {
     position: absolute;
+    display: flex;
+    justify-self: left;
     grid-row: 1 / -1;
     grid-column: 4 / 5;
 }
@@ -510,6 +514,7 @@
     grid-row: 1 / -1;
     grid-column: 5 / 6;
     letter-spacing: 4px;
+    /* letter-spacing: 1rem; */
 
 }
 
@@ -987,6 +992,7 @@
     background: var(--off-white);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding: 0 2rem 0 2rem;
 }
 
 .granulation-analytics {

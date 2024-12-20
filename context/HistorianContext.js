@@ -1,5 +1,3 @@
-// 'use client';
-
 import { createContext, useState, useEffect } from "react";
 import { phd_urea, phd_site } from "@utils/phd";
 
@@ -10,7 +8,32 @@ export const HistorianProvider = ({ children }) => {
     const [phdData, setPhdData] = useState([]);
     const [phdDataSite, setPhdDataSite] = useState([]);
     const [ureaProd, setUreaProd] = useState([]);
+    const [ureaSampleData, setUreaSampleData] = useState([]);
 
+    const ureaSamples = async (req) => {
+        try {
+            const res = await fetch(`../api/tungsten/suez`,
+                {
+                    method: 'GET',
+                })
+
+            if (!res.ok) {
+                throw new Error("Tungsten context query failed!")
+            }
+
+            const data = await res.json();
+            console.log("TUNGSTEN SERVER (context call): ", data);
+            setUreaSampleData(data);
+
+
+        } catch (error) {
+            console.log("TUNGSTEN SERVER ERROR (context call): ", error);
+            return new Response("Failed to fetch tag via context call", { status: 500 });
+
+        }
+
+    };
+    
     const phd = async (req) => {
         try {
             const res = await fetch(`../api/tungsten/tags`,
@@ -86,18 +109,21 @@ export const HistorianProvider = ({ children }) => {
         phd();
         phdSite();
         phdMultiple();
+        ureaSamples();
 
         setInterval(() => {
             phd();
             phdSite();
             phdMultiple();
+            ureaSamples();
+
         }, 300000);
     }, []);
 
 
 
     return (
-        <HistorianContext.Provider value={{ phdData, phdDataSite, ureaProd}}>
+        <HistorianContext.Provider value={{ phdData, phdDataSite, ureaProd, ureaSampleData}}>
             {children}
         </HistorianContext.Provider>
     )

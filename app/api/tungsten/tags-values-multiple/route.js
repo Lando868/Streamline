@@ -6,7 +6,7 @@ import { getTungstenAccess } from "@utils/getTungstenAccess";
 export const GET = async (req, { params }) => {
 
     const accessToken = await getTungstenAccess();
-    console.log(`TAGS-VALUES-MULTIPLE: Access Token: ${accessToken}`);
+    // console.log(`TAGS-VALUES-MULTIPLE: Access Token: ${accessToken}`);
     
     // console.log("TAGS-VALUES-MULTIPLE: Tungsten fetch: ", req)
     const url = new URL(req.url, 'http://localhost:3000');

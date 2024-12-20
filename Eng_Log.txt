@@ -1,2 +1,105 @@
-12/13/24
-Call getTungstenAccess and export token in HistorianContext
+12/18/24
+TASKS:
+  LEARN:
+  - Axios
+  - AWS Auth   --   aws-amplify
+  - Typescript
+  - API best practices
+  - ExcelJS 
+  - Refactor Code into raw React
+  - Tailwind CSS
+  - Postgres SQL
+  - AWS
+  - Python
+  - C++
+  - Terraform, Kubernetes, and CloudFormation
+  - SageMaker 
+  - EC2, S3, VPC, Lambda, RDS, DynamoDB
+
+
+  "Site Status" module
+  - Complete site status compnents for all TNO sites
+  - Complete logic for site selection and status display
+  - Move from Site View to Plant View when plant is clicked on
+  - Pull Demin values
+  - Pull Product Handling values
+  - Pull UFC values
+  - Pull 04 values
+  - Calculate 04 Rate
+  - Experiment with layout transitions
+  - Make responsive
+  - Add date picker that changes data displayed
+  - Refactor code to be more efficient and readable
+
+
+  "Asset Details" module
+  - Add all assets for TNO
+  - Adjust regex to allow for _ and - in searches
+  - Regex should strip query of _ and - as well
+  - Sharepoint API access
+  - EAM API access
+  - Meridian API access
+  - Query metadata for existing assets
+  - Query OPIS logs
+  - Query Sharepoint
+
+
+
+
+
+
+12/14/24
+From Tungsten Swagger UI: https://dev-tungsten-swagger-ui.s3.us-east-2.amazonaws.com/index.html
+
+Sources:
+[
+  "abb",
+  "ahms",
+  "alarms",
+  "augustaSampleManager",
+  "augustaWonderWare",
+  "auroraAtPlant",
+  "auroraOls",
+  "auroraOlsShipping",
+  "auroraSampleManager",
+  "calculations",
+  "dodge",
+  "enterprisePi",
+  "fastField",
+  "fluidlife",
+  "fluidlife2",
+  "geismarOls",
+  "geismarpi",
+  "geismarSampleManager",
+  "inmation",
+  "intelatrac",
+  "limapi",
+  "limaSampleManager",
+  "mbal",
+  "piaf",
+  "sapqm",
+  "seeq",
+  "suez",
+  "testoil",
+  "tmp_fortsaskBently",
+  "tmp_geismarBentley",
+  "trinidadphd",
+  "tungstenInmation",
+  "whiteSpringsOls",
+  "whiteSpringsSampleManager"
+]
+
+Original Team for Streamline pitch
+- TJ Heidrick
+- Erik Vettergren
+- Edmond Thompson
+- Gary Peterson
+- Leiselle Harripersad
+
+Other personnel:
+- Prentiss Adams
+- Adeyinka Opadeyi
+- Chris Magnusson
+- Nekelle Celestain
+- Ryan Baker
+- Osamuyi Omorodion

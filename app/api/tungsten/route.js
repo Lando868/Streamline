@@ -3,11 +3,9 @@ import { getTungstenAccess } from "@utils/getTungstenAccess";
 
 export const GET = async (req, { params }) => {
 
-    // console.log("tungsten fetch: ", req)
     const accessToken = await getTungstenAccess();
     const url = new URL(req.url, 'http://localhost:3000');
     const tag = new URLSearchParams(url.searchParams).get("tag");
-    // console.log("tungsten query: ", tag)
 
     try {
         const res = await fetch(`${tungsten.latestValue}=${tag}&${tungsten.latestFields}`,

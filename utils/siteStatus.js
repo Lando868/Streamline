@@ -31,7 +31,7 @@ export const siteStatus = [
         steamImport: 36,
         steamExport: 7,
         limitations: "process",
-        comment: "",
+        comment: "Started reducing plant rate as directed to facilitate 04 unit start up",
     },
     {
         site: "04 Unit",
@@ -45,7 +45,7 @@ export const siteStatus = [
         steamExportNew: 159,
         ammoniaInventory: 43140.016,
         limitations: "none",
-        comment: "P34 to be taken out of service for repairs",
+        comment: "TAR complete. Start up in progress",
     },
     {
         site: "product handling",
@@ -66,7 +66,7 @@ export const siteStatus = [
             tonnageLoaded: 10300,
             targetTonnage: 15000
         },
-        comment: "LPGC Vibrant expected to arrive on 6/27/23"
+        comment: "LPGC Vibrant expected to arrive on 12/27/24"
 
     },
     {
@@ -85,7 +85,7 @@ export const siteStatus = [
         steamImport: 24,
         tank01v501: 34.2,
         tank02v5: 7.01,
-        comment: "Rate to be maintained at 93.5% as per Supt. instructions"
+        comment: "Rate to be maintained at 82.5% as per Supt. instructions"
     },
     {
         site: "demin plant",
@@ -103,7 +103,7 @@ export const siteStatus = [
         incoming8: 1,
         incoming10: 1,
         incoming12: 2,
-        comment: ""
+        comment: "050 'A' Cation O/S for weld repairs"
     },
     {
         site: "UFC-85",

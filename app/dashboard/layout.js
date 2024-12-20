@@ -18,10 +18,10 @@ import Clock from "../../components/Clock";
 import { date } from '@utils/date';
 import { shift } from '@utils/shift';
 
-export const metadata = {
-    title: 'Streamline: Dashboard',
-    description: 'Harnessing the Power of Data',
-}
+// export const metadata = {
+//     title: 'Streamline: Dashboard',
+//     description: 'Harnessing the Power of Data',
+// }
 
 export default function DashboardLayout({ children }) {
 

@@ -1,4 +1,5 @@
 import Analytic from "./Analytic.jsx";
+import _ from "lodash";
 
 
 const StatusUrea = (props) => {
@@ -11,6 +12,17 @@ const StatusUrea = (props) => {
         const value = tag?.DoubleValue;
         return { name, value }
     }
+
+
+    const ureaSamples = (query) => {
+        const tag = props.samples?.find((ureaSample) => ureaSample.TagName === query);
+        const name = tag?.TagName;
+        const value = tag?.DoubleValue;
+        return { name, value }
+    }
+
+    console.log(`Urea Sample Data: ${props.samples}`);
+
 
     const ureaCalc = (FI_104) => {
         const importFlow = Number(FI_104);
@@ -39,13 +51,18 @@ const StatusUrea = (props) => {
     const currentRate = ureaCalc(phd("01_FI_104.DACA.PV").value).currentRate;
     const ureaEnergy = phd("UREA_ENERGY.DIVA_2.OUT").value?.toFixed(1);
 
+    //Granulation Calculations
+
+    const nozzlesA = _.clamp(((phd("02_FI_2A.DACA.PV").value / (phd("02_PIC_10A.DACA.PV").value / 5)) / 6), 0, 7).toFixed(0);
+    const nozzlesB = _.clamp(((phd("02_FI_2B.DACA.PV").value / (phd("02_PIC_10B.DACA.PV").value / 5)) / 6.2), 0, 7).toFixed(0);
+
     return (
         <div className={`site-urea ${props.statusClass}`}>
             <h1 className="detailed-title">{props.site} <span>STATUS</span></h1>
 
             <div className="kpi-block kpi-rate">
                 <div className="detailed-kpi detailed-rate">
-                    <p className="kpi">{currentRate.toFixed(2)}</p>
+                    <p className="kpi">{currentRate.toFixed(1)}</p>
                     <span className="unit">%</span>
                     <span className="detailed-kpi-text">Plant Rate</span>
                 </div>
@@ -133,7 +150,7 @@ const StatusUrea = (props) => {
                         <Analytic
                             className="status-analytic"
                             title="Steam Import"
-                            value={phd("04_FIC_2.DACA_1.PV").value?.toFixed(1)}
+                            value={phd("04_FIC_2.DACA_1.PV").value > 5 ? phd("04_FIC_2.DACA_1.PV").value?.toFixed(1) : 0.0.toFixed(1)}
                             unit="T/h"
                         />
                     </div>
@@ -170,7 +187,7 @@ const StatusUrea = (props) => {
             <div className="kpi-block kpi-granulation">
 
                 <div className="detailed-kpi detailed-nozzles">
-                    <p className="kpi">{Math.floor(phd("02_FI_2A.DACA.PV").value / 6).toFixed(0)}<span className="nozzles-x"> x </span>{Math.floor(phd("02_FI_2B.DACA.PV").value / 6).toFixed(0)}</p>
+                    <p className="kpi">{nozzlesA}<span className="nozzles-x"> x </span>{nozzlesB}</p>
                     <span className="unit"></span>
                     <span className="detailed-kpi-text">Nozzles</span>
                 </div>
@@ -195,19 +212,20 @@ const StatusUrea = (props) => {
                         <Analytic
                             className="status-analytic"
                             title="Moisture"
-                            value="0.34"
+                            value={ureaSamples("TNO/Urea/Composite_Sample_-_Moisture").value?.toFixed(2)}
+                            // phd("UREA_ENERGY.DIVA_2.OUT").value?.toFixed(1);
                             unit="wt%"
                         />
                         <Analytic
                             className="status-analytic"
                             title="Biuret"
-                            value="0.77"
+                            value={ureaSamples("TNO/Urea/Composite_Sample_-_Biuret").value?.toFixed(2)}
                             unit="wt%"
                         />
                         <Analytic
                             className="status-analytic"
                             title="Formaldehyde"
-                            value="0.59"
+                            value={ureaSamples("TNO/Urea/Composite_Sample_-_Formaldehyde").value?.toFixed(2)}
                             unit="wt%"
                         />
                     </div>

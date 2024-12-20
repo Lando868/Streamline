@@ -12,6 +12,8 @@ export const tungsten = {
 
     tags: "https://tungsten-api.nutrien.com/v1/operations/tungsten/system/trinidadphd/tags/value/latest?",
 
+    suez: "https://tungsten-api.nutrien.com/v1/operations/tungsten/system/suez/tags/value?",
+
     multipleTagsValues: "https://tungsten-api.nutrien.com/v1/operations/tungsten/system/trinidadphd/tags/values?",
 
     drest: "startTime=7%2F1%2F2023%2010%3A00%3A00%20AM&endTime=7%2F28%2F2023%2011%3A00%3A00%20AM&reductionType=snapshot&reductionOffset=after&reductionFrequency=43200&size=75&page=1&fields=TagName%2C%20DoubleValue%2C%20StringValue%2C%20TimeStamp%2C%20Confidence",
